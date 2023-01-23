@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ci2-CRIS - Dashboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <%= image_tag "logo_white.png", class: 'img-fluid' %>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link text-white align-middle px-0">
+                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home Page</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin" class="nav-link text-white align-middle px-0">
+                                <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/users" class="nav-link text-white align-middle px-0">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Users</span>
+                            </a>
+                        </li>
+
+                        <%# example nested menu %>
+                        <%# <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0 align-middle">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Users</span> </a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link text-white px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
+                                </li>
+                            </ul>
+                        </li> %>
+                    </ul>
+                    <hr>
+                    <div class="dropdown pb-4">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fs-4 bi-person-circle me-2"></i>
+                            <span class="d-none d-sm-inline mx-1"><%= current_user.name.split(' ')[0] %></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                            <li><%= link_to "Account", edit_registration_path('user'), class: 'dropdown-item' %></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><%= link_to "Logout", destroy_user_session_path, class: 'dropdown-item', data: { turbo_method: :delete } %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col py-3">
+                <% flash.each do |type, msg| %>
+                    <div class="header d-flex align-items-center h-auto">
+                        <div class="container-xl d-flex align-items-center justify-content-between">
+                        <% if type == "notice" %>
+                            <div class="alert alert-dismissible fade show alert-success w-100">
+                        <% elsif type == "alert" %>
+                            <div class="alert alert-dismissible fade show alert-danger w-100">
+                        <% else %>
+                            <div class='alert alert-dismissible fade show alert-<%= "#{type}" %> mb-0 w-100'>
+                        <% end %>
+                            <ul class="mb-0">
+                                <li><%= msg %></li>
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        </div>
+                    </div>
+                <% end %>
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

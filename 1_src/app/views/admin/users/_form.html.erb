@@ -1,0 +1,85 @@
+<%
+    disabled ||= false
+%>
+<div class="container-fluid">
+  <div class="row mt-5 justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">User<% if disabled %> <a href="<%= edit_admin_user_path %>"><i class="bi-pencil me-2"></i>Edit</a><% end %></div>
+        <div class="card-body">
+            <%= form_for [:admin, @resource] do |f| %>
+            <% if @resource.errors.any? %>
+                <div class="alert alert-danger w-100">
+                    <h2>
+                    <%= I18n.t("errors.messages.not_saved", count: @resource.errors.count, resource: @resource.class.model_name.human.downcase) %>
+                    </h2>
+                    <ul class="mb-0">
+                    <% @resource.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <% unless @resource.new_record? %>
+                <div class="field form-group mb-3">
+                    <%= f.label :id %><br />
+                    <%= f.text_field :id, class:"form-control", disabled: true %>
+                </div>
+            <% end %>
+
+            <% unless disabled %>
+                <div class="field form-group mb-3">
+                    <%= f.label :user_type %><br />
+                    <%= f.select :user_type, [['User', 'user'], ['Admin', 'admin'], ['Superadmin', 'superadmin']], class:"form-select" %>
+                </div>
+            <% else %>
+                <div class="field form-group mb-3">
+                    <%= f.label :user_type %><br />
+                    <%= f.text_field :user_type, value: f.object.user_type.capitalize, class:"form-control", readonly: true %>
+                </div>
+            <% end %>
+
+            <div class="field form-group mb-3">
+              <%= f.label :name %><br />
+              <%= f.text_field :name, class:"form-control", placeholder:"Mohammed Ali", autofocus: true, autocomplete: "name", readonly: disabled %>
+            </div>
+
+            <div class="field form-group mb-3">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, class:"form-control", placeholder:"someone@example.com", autocomplete: "email", readonly: disabled %>
+            </div>
+            
+            <% unless disabled %>
+                <div class="field form-group mb-3">
+                    <%= f.label 'Password (leave blank if don\'t want to change)' %>
+                    <% if @minimum_password_length %>
+                        <em>(<%= @minimum_password_length %> characters minimum)</em>
+                    <% end %><br />
+                    <%= f.password_field :password, class:"form-control", placeholder:"*******", autocomplete: "new-password" %>
+                </div>
+            <% end %>
+
+            <% unless @resource.new_record? %>
+                <div class="field form-group mb-3">
+                    <%= f.label :created_at %><br />
+                    <%= f.text_field :created_at, class:"form-control", disabled: true %>
+                </div>
+                <div class="field form-group mb-3">
+                    <%= f.label :updated_at %><br />
+                    <%= f.text_field :updated_at, class:"form-control", disabled: true %>
+                </div>
+            <% end %>
+
+            <% unless disabled %>
+                <div class="actions">
+                    <button type="submit" name="commit" class="btn btn-primary"><i class="bi-save me-2"></i>Save</button>
+                </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="card-footer"><a href="<%= @resource.new_record? || disabled ? admin_users_path : admin_user_path %>"><i class="bi-backspace me-2"></i>Cancel</a></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   root "home#index"
   resources :projects
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  namespace :admin do
+    get '/', to: 'admin#index'
+    resources :users
+  end
 end
