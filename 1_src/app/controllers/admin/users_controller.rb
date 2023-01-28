@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
     before_action :authenticate_user!
-    before_action(only: [:index, :users]) { only_allow_user_types(['superadmin', 'admin']) }
+    before_action { only_allow_user_types(['superadmin', 'admin']) }
     layout 'dashboard'
     
     def index
@@ -18,6 +18,13 @@ class Admin::UsersController < ApplicationController
     def create
         @resource = User.new(params.require(:user).permit(:user_type, :name, :email, :password))
 
+        # only superadmins can create superadmins
+        if @resource.user_type == 'superadmin' && current_user.user_type != 'superadmin'
+            @resource.errors.add(:user_type, ": You don't have the permission to create Superadmins!")
+            render :new, status: :unprocessable_entity
+            return
+        end
+        
         if @resource.save
             redirect_to [:admin, @resource]
         else
@@ -32,6 +39,13 @@ class Admin::UsersController < ApplicationController
     def update
         @resource = User.find(params[:id])
 
+        # only superadmins can update superadmins
+        if @resource.user_type == 'superadmin' && current_user.user_type != 'superadmin'
+            @resource.errors.add(:user_type, ": You don't have the permission to update Superadmins!")
+            render :new, status: :unprocessable_entity
+            return
+        end
+
         if @resource.update(params.require(:user).permit(:user_type, :name, :email))
             redirect_to [:admin, @resource]
         else
@@ -41,14 +55,17 @@ class Admin::UsersController < ApplicationController
 
     def destroy
         @resource = User.find(params[:id])
+
+        # only superadmins can destory superadmins
+        if @resource.user_type == 'superadmin' && current_user.user_type != 'superadmin'
+            @resource.errors.add(:user_type, ": You don't have the permission to delete Superadmins!")
+            flash[:alert] = ": You don't have the permission to delete Superadmins!"
+            redirect_to action: 'index', status: :unprocessable_entity
+            return
+        end
+
         @resource.destroy
 
         redirect_to action: 'index', status: :see_other
-    end
-
-    private
-
-    def users_params
-        params.require(:user).permit(:user_type, :name, :email, :password)
     end
 end
