@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: 'admin#index'
     resources :users
+    post '/users/:id/block-unblock', to: 'users#block_unblock', as: 'block_unblock_user'
   end
 end

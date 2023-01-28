@@ -69,6 +69,11 @@
                     <%= f.label :updated_at %><br />
                     <%= f.text_field :updated_at, class:"form-control", disabled: true %>
                 </div>
+
+                <div class="field form-group mb-3">
+                    <%= f.label :blocked_at %><br />
+                    <%= f.text_field :blocked_at, class:"form-control", disabled: true %>
+                </div>
             <% end %>
 
             <% unless disabled %>
