@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row mt-5 justify-content-center">
     <div class="col-md-6">
-      <div class="card">
+      <div class="card" data-cy="form-edit-account">
         <div class="card-header">
           Edit My Account
         </div>
@@ -11,12 +11,12 @@
 
             <div class="field form-group mb-3">
               <%= f.label :user_type %><br />
-              <%= f.text_field :user_type, :value => f.object.user_type.capitalize, class:"form-control", readonly: true, disabled: true %>
+              <%= f.text_field :user_type, :value => f.object.user_type.capitalize, class:"form-control", readonly: true, disabled: true, 'data-cy': 'fld-user-type' %>
             </div>
 
             <div class="field form-group mb-3">
               <%= f.label :name %><br />
-              <%= f.text_field :name, class:"form-control", placeholder:"Mohammed Ali", autofocus: true, autocomplete: "name" %>
+              <%= f.text_field :name, class:"form-control", placeholder:"Mohammed Ali", autofocus: true, autocomplete: "name", 'data-cy': 'fld-name' %>
             </div>
 
             <div class="field form-group mb-3">
@@ -43,11 +43,11 @@
 
             <div class="field form-group mt-4">
               <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-              <%= f.password_field :current_password, class:"form-control", placeholder:"*******", autocomplete: "current-password" %>
+              <%= f.password_field :current_password, class:"form-control", placeholder:"*******", autocomplete: "current-password", 'data-cy': 'fld-cur-pass' %>
             </div>
 
             <div class="actions mt-2">
-              <%= f.submit "Update", class:"btn btn-primary" %>
+              <%= f.submit "Update", class:"btn btn-primary", 'data-cy': 'btn-submit' %>
             </div>
           <% end %>
           <%= button_to "Delete my account", registration_path(resource_name), data: { turbo_confirm: "Are you sure you want to delete your account?" }, class:"btn btn-danger mt-5", method: :delete %>

@@ -1,0 +1,16 @@
+{
+  "name": "ci2-cris-e2e-tests",
+  "version": "1.0.0",
+  "description": "Ci2-CRIS project E2E tests",
+  "main": "index.js",
+  "scripts": {
+    "cypress": "cypress open --e2e --browser chrome",
+    "e2e": "cypress run --browser chrome --headed",
+    "e2e:headless": "cypress run --browser chrome --headless"
+  },
+  "author": "Shoaib Feda",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^12.4.0"
+  }
+}

@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row mt-5 justify-content-center">
     <div class="col-md-6">
-      <div class="card">
+      <div class="card" data-cy="form-login">
         <div class="card-header">
           Login
         </div>
@@ -9,12 +9,12 @@
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
             <div class="field form-group mb-3">
               <%= f.label :email %><br />
-              <%= f.email_field :email, class:"form-control", placeholder:"someone@example.com", autofocus: true, autocomplete: "email" %>
+              <%= f.email_field :email, class:"form-control", placeholder:"someone@example.com", autofocus: true, autocomplete: "email", 'data-cy': 'fld-email' %>
             </div>
 
             <div class="field form-group mb-3">
               <%= f.label :password %><br />
-              <%= f.password_field :password, class:"form-control", placeholder:"*******", autocomplete: "current-password" %>
+              <%= f.password_field :password, class:"form-control", placeholder:"*******", autocomplete: "current-password", 'data-cy': 'fld-pass' %>
             </div>
 
             <% if devise_mapping.rememberable? %>
@@ -25,7 +25,7 @@
             <% end %>
 
             <div class="actions">
-              <%= f.submit "Login", class:"btn btn-primary" %>
+              <%= f.submit "Login", class:"btn btn-primary", 'data-cy': 'btn-login' %>
             </div>
           <% end %>
         </div>
