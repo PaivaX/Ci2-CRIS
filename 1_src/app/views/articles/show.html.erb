@@ -1,0 +1,14 @@
+<h1><%= @article.title %></h1>
+
+<%= render "showArticle", article: @article %>
+
+<ul><% if user_signed_in? %>
+  <li><%= link_to "Edit", edit_article_path(@article) %></li>
+  <li><%= link_to "Destroy", article_path(@article), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li><% end %>
+</ul>
+
+
+<%= link_to "Return  to Index", "/articles" %>

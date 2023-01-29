@@ -1,0 +1,216 @@
+
+<%= form_with model: @article do |form| %>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% @article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :abstract %><br>
+    <%= form.text_area :abstract %><br>
+    <% @article.errors.full_messages_for(:abstract).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <p>Projeto</p>
+  <%= form.select :project_id, Project.all.collect { |p| [ p.title, p.id]}, include_blank: true %>
+  </div>
+  <div>
+    <%= form.label :authors %><br>
+    <%= form.text_area :authors %><br>
+    <% @article.errors.full_messages_for(:authors).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :publish_date %><br>
+    <%= form.date_field :publish_date %><br>
+    <% @article.errors.full_messages_for(:publish_date).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :pages %><br>
+    <%= form.number_field :pages %><br>
+    <% @article.errors.full_messages_for(:pages).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :keywords %><br>
+    <%= form.text_area :keywords %><br>
+    <% @article.errors.full_messages_for(:keywords).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :url %><br>
+    <%= form.text_field :url %><br>
+    <% @article.errors.full_messages_for(:url).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :ids %><br>
+    <%= form.text_field :ids %><br>
+    <% @article.errors.full_messages_for(:ids).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <select id="myselection">
+    <option value="Book"  >Book</option>
+    <option value="Journal"  >Journal</option>
+    <option value="Conference" >Conference</option>
+    <option value="Report">Report</option>
+    <option value="Thesis"  >Thesis</option>
+  </select>
+
+  <div id="showBook" class="myDiv">
+    <div>
+      <%= form.label :edition %><br>
+      <%= form.text_field :edition %><br>
+      <% @article.errors.full_messages_for(:edition).each do |message| %>
+        <div><%= message %></div>
+
+      <% end %>
+    </div>
+      <div>
+        <%= form.label :publisher %><br>
+        <%= form.text_field :publisher %><br>
+        <% @article.errors.full_messages_for(:publisher).each do |message| %>
+          <div><%= message %></div>
+
+        <% end %>
+      </div>
+
+
+  </div>
+
+  <div id="showConference" class="myDiv">
+    <div>
+      <%= form.label :proceedings %><br>
+      <%= form.text_field :proceedings %><br>
+      <% @article.errors.full_messages_for(:proceedings).each do |message| %>
+        <div><%= message %></div>
+
+      <% end %>
+    </div>
+      <div>
+        <%= form.label :place %><br>
+        <%= form.text_field :place %><br>
+        <% @article.errors.full_messages_for(:place).each do |message| %>
+          <div><%= message %></div>
+
+        <% end %>
+      </div>
+
+  </div>
+
+  <div id="showJournal" class="myDiv">
+    <div>
+      <%= form.label :journal_name %><br>
+      <%= form.text_field :journal_name %><br>
+      <% @article.errors.full_messages_for(:journal_name).each do |message| %>
+        <div><%= message %></div>
+
+      <% end %>
+    </div>
+
+
+  </div>
+
+  <div id="showThesis" class="myDiv">
+    <div>
+      <%= form.label :university %><br>
+      <%= form.text_field :university %><br>
+      <% @article.errors.full_messages_for(:university).each do |message| %>
+        <div><%= message %></div>
+
+      <% end %>
+    </div>
+      <div>
+        <%= form.label :thesis_type %><br>
+        <%= form.text_field :thesis_type %><br>
+        <% @article.errors.full_messages_for(:thesis_type).each do |message| %>
+          <div><%= message %></div>
+
+        <% end %>
+      </div>
+
+  </div>
+
+  <%= form.hidden_field :type , value: 'Book', :class => "hidden-field1" %>
+  <%= form.hidden_field :type , value: 'Journal', :class => "hidden-field2" %>
+  <%= form.hidden_field :type , value: 'Thesis', :class => "hidden-field3" %>
+  <%= form.hidden_field :type , value: 'Conference', :class => "hidden-field4" %>
+  <%= form.hidden_field :type , value: 'Report', :class => "hidden-field5" %>
+
+  <div>
+    <%= form.submit :class=>"btn btn-primary"%>
+  </div>
+<% end %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $("div.myDiv").hide();
+        $(".hidden-field1").attr("disabled", true);
+        $(".hidden-field2").attr("disabled", true);
+        $(".hidden-field3").attr("disabled", true);
+        $(".hidden-field4").attr("disabled", true);
+        $(".hidden-field5").attr("disabled", true);
+        $('#myselection').on('change', function(){
+            var demovalue = $(this).val();
+            $("div.myDiv").hide();
+            $("#show"+demovalue).show();
+            if(demovalue == 'Book'){
+                $(".hidden-field1").attr("disabled", false);
+                $(".hidden-field2").attr("disabled", true);
+                $(".hidden-field3").attr("disabled", true);
+                $(".hidden-field4").attr("disabled", true);
+                $(".hidden-field5").attr("disabled", true);
+            }
+            else if(demovalue == 'Journal'){
+                $(".hidden-field1").attr("disabled", true);
+                $(".hidden-field2").attr("disabled", false);
+                $(".hidden-field3").attr("disabled", true);
+                $(".hidden-field4").attr("disabled", true);
+                $(".hidden-field5").attr("disabled", true);
+            }
+            else if(demovalue == 'Thesis'){
+                $(".hidden-field1").attr("disabled", true);
+                $(".hidden-field2").attr("disabled", true);
+                $(".hidden-field3").attr("disabled", false);
+                $(".hidden-field4").attr("disabled", true);
+                $(".hidden-field5").attr("disabled", true);
+            }
+            else if(demovalue == 'Conference'){
+                $(".hidden-field1").attr("disabled", true);
+                $(".hidden-field2").attr("disabled", true);
+                $(".hidden-field3").attr("disabled", true);
+                $(".hidden-field4").attr("disabled", false);
+                $(".hidden-field5").attr("disabled", true);
+            }
+            else if(demovalue == 'Report'){
+                $(".hidden-field1").attr("disabled", true);
+                $(".hidden-field2").attr("disabled", true);
+                $(".hidden-field3").attr("disabled", true);
+                $(".hidden-field4").attr("disabled", true);
+                $(".hidden-field5").attr("disabled", false);
+            }
+
+        });
+    });
+</script>

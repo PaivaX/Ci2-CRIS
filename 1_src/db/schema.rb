@@ -10,7 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_23_151450) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_28_171544) do
+  create_table "articles", charset: "utf8mb4", force: :cascade do |t|
+    t.string "title"
+    t.string "authors"
+    t.date "publish_date"
+    t.integer "pages"
+    t.text "abstract"
+    t.string "keywords"
+    t.string "url"
+    t.string "ids"
+    t.string "type"
+    t.string "journal_name"
+    t.string "volume"
+    t.string "issue"
+    t.string "proceedings"
+    t.string "place"
+    t.string "edition"
+    t.string "publisher"
+    t.string "departement"
+    t.string "university"
+    t.string "thesis_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "project_id", null: false
+    t.index ["project_id"], name: "index_articles_on_project_id"
+  end
+
   create_table "projects", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "body"

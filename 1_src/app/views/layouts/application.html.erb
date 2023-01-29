@@ -8,7 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "main" %>
-    
+
     <%= javascript_importmap_tags %>
   </head>
 
@@ -50,6 +50,7 @@
             <li><a href="#centro">Centro</a></li>
             <li><a href="#projects">Laboratórios</a></li>
             <li><a href="#team">Investigadores</a></li>
+            <li><a href="./articles">Artigos</a></li>
             <li><a href="blog.html">Instituições</a></li>
             <li class="dropdown"><a href="/projects"><span>Projectos</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
               <ul>
@@ -86,6 +87,38 @@
         </div>
       </div>
     <% end %>
+
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="/" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <%= image_tag "logo.png" %>
+        <!-- <h1>Impact<span>.</span></h1> -->
+      </a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="#centro">Centro</a></li>
+          <li><a href="#projects">Laboratórios</a></li>
+          <li><a href="#team">Investigadores</a></li>
+          <li><a href="#articles">Artigos</a></li>
+          <li><a href="blog.html">Instituições</a></li>
+          <li class="dropdown"><a href="/projects"><span>Projectos</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li><a href="/projects">Projectos em execução</a></li>
+              <li><a href="#">Projectos concluídos</a></li>
+              <li><a href="#">Projeto TransCoTec</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contactos</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header><!-- End Header -->
+  <!-- End Header -->
 
     <%= yield %>
   </body>

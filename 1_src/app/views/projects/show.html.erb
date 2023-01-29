@@ -10,7 +10,9 @@
       <p><%= @projects.end_date %></p>
       <p><%= @projects.url_project %></p>
       <p><%= @projects.role %></p>
-
+      <% @projects.articles.each do |article| %>
+        <p><a href="/articles/<%= article.id %>"><%= article.title %> </a></p>
+      <% end %>
       <ul>
         <li><%= link_to "Edit", edit_project_path(@projects) %></li>
         <li><%= button_to 'Destroy', @projects, method: :delete,

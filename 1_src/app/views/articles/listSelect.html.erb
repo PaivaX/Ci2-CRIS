@@ -1,0 +1,7 @@
+<h1>All <% @articles.first.title%></h1>
+
+<% @articles.each do |article| %>
+  <%= render "showArticle", article: article %>
+<% end %>
+
+<%= link_to "Return  to Index", "/articles" %>

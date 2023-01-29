@@ -1,0 +1,79 @@
+
+<%if article.title != nil %>
+  <h5><%= article.class.column_for_attribute(:title).name %></h5>
+  <h1><%= article.title %></h1>
+<%end%>
+
+<%if article.type != nil %>
+  <h5><%= article.class.column_for_attribute(:type).name %></h5>
+  <p><%= article.type %></p>
+<%end%>
+
+<%if article.abstract != nil %>
+  <h5><%= article.class.column_for_attribute(:abstract).name %></h5>
+  <p><%= article.abstract %></p>
+<%end%>
+
+<%if article.project !=nil %>
+<h5>Pertence ao projeto</h5>
+<a href="/projects/<%= article.project.id %>"><%= article.project.title%></a>
+<%end%>
+
+<%unless article.authors == nil || article.authors.empty?%>
+  <h5><%= article.class.column_for_attribute(:authors).name %></h5>
+  <p><%= article.authors %></p>
+<%end%>
+
+<%if article.publish_date != nil %>
+  <h5><%= article.class.column_for_attribute(:publish_date).name %></h5>
+  <p><%= article.publish_date %></p>
+<%end%>
+
+<%if article.pages != nil %>
+  <h5><%= article.class.column_for_attribute(:pages).name %></h5>
+  <p><%= article.pages %></p>
+<%end%>
+
+<%unless article.keywords == nil || article.keywords.empty? %>
+  <h5><%= article.class.column_for_attribute(:keywords).name %></h5>
+  <p><%= article.keywords %></p>
+<%end%>
+
+<%unless article.url == nil || article.url.empty?%>
+  <h5><%= article.class.column_for_attribute(:url).name %></h5>
+  <p><%= article.url %></p>
+<%end%>
+
+<%unless article.ids == nil || article.ids.empty? %>
+  <h5><%= article.class.column_for_attribute(:ids).name %></h5>
+  <p><%= article.ids %></p>
+<%end%>
+
+
+<%case article.type %>
+<%when 'Book'%>
+  <h5><%= article.class.column_for_attribute(:edition).name %></h5>
+  <p><%= article.edition %></p>
+
+  <h5><%= article.class.column_for_attribute(:publisher).name %></h5>
+  <p><%= article.publisher %></p>
+
+<%when 'Thesis'%>
+  <h5><%= article.class.column_for_attribute(:university).name %></h5>
+  <p><%= article.university %></p>
+
+  <h5><%= article.class.column_for_attribute(:thesis_type).name %></h5>
+  <p><%= article.thesis_type %></p>
+
+<%when 'Conference'%>
+  <h5><%= article.class.column_for_attribute(:proceedings).name %></h5>
+  <p><%= article.proceedings %></p>
+
+  <h5><%= article.class.column_for_attribute(:place).name %></h5>
+  <p><%= article.place %></p>
+
+<%when 'Journal'%>
+  <h5><%= article.class.column_for_attribute(:journal_name).name %></h5>
+  <p><%= article.journal_name %></p>
+<%else %>
+<% end %>
