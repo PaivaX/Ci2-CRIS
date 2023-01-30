@@ -1,0 +1,28 @@
+
+<div class="section-header">
+  <h1><%=@institutions.name %></h1>
+</div>
+
+
+<div class="blog">
+  <div class="container aos-init aos-animate">
+    <article class="blog-details">
+    <% if @institutions.image.attached? %>
+      <%= image_tag @institutions.image, class: "img-fluid" %>
+    <% end %>
+        <!--<p><%= @institutions.image %></p>-->
+        <ul>
+            <a href="<%= @institutions.url %>"<p><%= @institutions.url %></p></a>
+            <p><%= @institutions.partner %></p>
+        </ul>
+
+        <ul>
+            <li><%= link_to "Editar", edit_institution_path(@institutions) %></li>
+            <li><%= button_to 'Eliminar', @institutions, method: :delete,
+                    confirm: 'Are you sure?' %></li>
+        </ul>
+    </article>
+    <a href="/institutions">Voltar a Lista de Instituições</a>
+  </div>
+</div>
+

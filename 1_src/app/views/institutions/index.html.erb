@@ -1,0 +1,28 @@
+<div class="section-header">
+  <h2>Institutions</h2>
+</div>
+<div class="row">
+<%= link_to "New institution", new_institution_path, :class=>"btn btn-primary" %>
+</div>
+
+<section id="projects" class="services sections-bg">
+    <div class="container" data-aos="fade-up">
+    <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+         <% @institutions.each do |institution| %>
+            <div class="col-md-6 col-sm-6">
+               <div class="media  position-relative institution">   
+                  <div class="post-img">
+                <%= image_tag institution.image, class: "thumb" if institution.image.attached? %>
+               </div>
+               <div>
+                  <p><%= link_to institution.name, institution %></p>
+               </div>
+                  <ul>
+                    <li><p><%= institution.description %></p></li>
+                  </ul>               
+               </div>
+            </div>  
+         <% end %> 
+    </div>
+</div>
+</section>

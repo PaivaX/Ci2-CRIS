@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   }
   root "home#index"
   resources :projects
+  resources :researchers
+  resources :institutions
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :contacts, only: [:new, :create]
+  get '/contacts', to: 'contacts#new', as: 'contact'
+  get 'contacts/sent'
 
   namespace :admin do
     get '/', to: 'admin#index'

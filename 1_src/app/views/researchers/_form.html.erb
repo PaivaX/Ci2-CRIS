@@ -1,0 +1,50 @@
+<section id="contact" class="contact">
+<div class="container aos-init aos-animate">
+  <div class="col-lg-6">
+    <%= form_with model: @researchers, :html => {:class => "php-email-form"} do |form| %>
+    <div class="project-form">
+      <div id="title-project-form"><%= t("researcher") %></div>
+        <div class="form-group">
+          <%= form.label :name, class: "col-md-4 control-label" %><br>
+          <%= form.text_field :name, required: true, class: "form-control" %>
+        </div>  
+      <div>
+        <%= form.label :resume %><br>
+        <%= form.text_area :resume, class: "form-control" %>
+      </div>
+      <div>
+        <%= form.label :email %><br>
+        <%= form.text_field :email, required: true, class: "form-control" %>
+      </div>
+      <div>
+        <%= form.label :website %><br>
+        <%= form.text_field :website, class: "form-control" %>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <%= form.label :birthday %><br>
+          <%= form.date_field :birthday, class: "form-control" %>
+        </div>  
+        <div class="form-group col-md-2 mt-3 mt-md-0">
+          <%= form.label :Degree %><br>
+          <%= form.collection_select :degree, Researcher::Degree, :to_s, :to_s, :include_blank => true %>
+        </div>
+        <div class="form-group col-md-4 mt-3 mt-md-0">
+      <%= form.label 'Image upload' %>
+      <%= form.file_field :avatar %><br>
+    </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+    <%= form.submit %>
+  </div>
+    <% end %>
+  </div>
+</div>
+</section>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>

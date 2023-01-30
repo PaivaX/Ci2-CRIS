@@ -1,0 +1,32 @@
+<div class="section-header">
+  <h2>Researchers</h2>
+</div>
+<div class="row">
+<%= link_to "New Researcher", new_researcher_path, :class=>"btn btn-primary" %>
+</div>
+<section id="researcher" class="researcher sections-bg">
+    <div class="container" data-aos="fade-up">
+    <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+         <% @researchers.each do |researcher| %>
+            <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+               <div class="member">
+              <% if researcher.avatar.attached? %>
+               <%= image_tag researcher.avatar, class: "img-fluid" %>
+               <% elsif %>
+                <%= image_tag("avatar.jpg", class:"img-fluid") %>
+               <% end %>
+                        <h4><%= link_to researcher.name, researcher %></h4>
+                        <p><%= researcher.resume %></p>
+                        <p><%= researcher.email %></p>
+                                 <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+               </div> 
+            </div>
+         <% end %> 
+    </div>
+</div>
+</section>

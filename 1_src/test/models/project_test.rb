@@ -1,7 +1,10 @@
 require "test_helper"
 
 class ProjectTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  test "should not save article without title" do
+    article = Project.new
+    assert_not Project.save
+  end
+  
 end

@@ -1,0 +1,37 @@
+<div class="blog">
+  <div class="container aos-init aos-animate"> 
+        <%= form_with model: @institutions do |form| %>
+          <div>
+            <%= form.label :name %><br>
+            <%= form.text_field :name, :class => "form-control" %>
+          </div>
+
+          <div>
+            <%= form.label :description %><br>
+            <%= form.text_field :description, :class => "form-control" %>
+          </div>
+
+          <div>
+            <%= form.label :url %><br>
+            <%= form.text_field :url, :class => "form-control" %>
+          </div>
+          
+          <div>
+            <%= form.label :image %><br>
+            <%= form.file_field :image, accept: 'image/png,image/jpeg', id:"filepicker" %>
+          </div>
+
+          <div>
+            <%= form.label :partner %><br>
+            <%= form.text_field :partner, :class => "form-control" %>
+          </div>
+
+          <div>
+            <%= form.submit %>
+          </div>
+        <% end %>
+    <li><a href="/institutions">Voltar a Lista de Instituições</a></li>
+  </div>
+</div>
+
+

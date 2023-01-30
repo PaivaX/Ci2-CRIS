@@ -10,7 +10,10 @@ module Ci2Cris
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-
+    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+      "<div class='your class'>#{html_tag}</div>".html_safe 
+ }
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

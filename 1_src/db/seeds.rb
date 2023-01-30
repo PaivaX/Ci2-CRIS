@@ -5,6 +5,11 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+projects = Project.create(title: "First Project", description: "O projeto EcoModZHC consiste numa de Prova de Conceito, em que se pretende implementar um protótipo de Zona Húmida Construída para demonstrar a efetividade de recuperação de águas residuais urbanas e industriais através de sistemas modulares, fomentar a economia circular da água e de resíduos e subprodutos sólidos industriais, e proceder à divulgação desta tecnologia mais verde e sustentável de tratamento de águas residuais no tecido industrial da Região. O protótipo a construir, instalar e operar, irá incluir duas vertentes inovadoras neste tipo de instalação de tratamento de águas residuais: (i) A monitorização remota, constante e em tempo real, do funcionamento da instalação e dos parâmetros de desempenho e de qualidade da água tratada; (ii) A autonomia energética da instalação, através de sistemas de energia renovável.", start_date: "14/01/2023", end_date: "", project_role: "", url_project: "www.ipt.pt")
+projects = Project.create(title: "Second Project", description: "For testing Second project rails", start_date: "14/01/2023", end_date: "", project_role: "", url_project: "www.ipt.pt")
+projects = Project.create(title: "Third Project", description: "For testing Third project rails", start_date: "14/01/2023", end_date: "", project_role: "", url_project: "www.ipt.pt")
+projects = Project.create(title: "Fourth Project", description: "For testing Fourth project rails", start_date: "14/01/2023", end_date: "", project_role: "", url_project: "www.ipt.pt")
+researchers = Researcher.create(name: "Rui Paiva", birthday: "23/08/1988", resume: "teste", email: "rui.paiva88@gmail.com", website: "www.rpx.pt", degree: "Licenciatura")
 User.create([
     { user_type: "admin", name: "Admin", email: "admin@app.com", password: "password" },
     { user_type: "user", name: "User", email: "user@app.com", password: "password" },

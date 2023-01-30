@@ -1,0 +1,17 @@
+<%= form_with(model: @contact, url: contacts_path, :html => {:class => "php-email-form"}) do |f| %>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <%= f.text_field  :name, required: true, class: "form-control", placeholder: "Name" %>
+        </div>
+        <div class="col-md-6 form-group mt-3 mt-md-0">
+            <%= f.text_field :email, required: true, class: "form-control", placeholder: "E-mail" %>
+        </div>
+    </div>
+    <div class="form-group mt-3">
+      <%= f.text_area :message, rows: 8, cols: 40, required: true, class: "form-control", 
+            placeholder: "Send a message"%></br>
+    </div>
+
+    <div class="text-center"><%= f.submit 'Send Message' %></div>
+    </div>
+  <% end %>
