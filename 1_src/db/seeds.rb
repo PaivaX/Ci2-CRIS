@@ -5,6 +5,12 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+User.create([
+    { user_type: "admin", name: "Admin", email: "admin@app.com", password: "password" },
+    { user_type: "user", name: "User", email: "user@app.com", password: "password" },
+    { user_type: "user", name: "Blocked User", email: "blocked@app.com", password: "password", blocked_at: DateTime.now()},
+    { user_type: "superadmin", name: "Shoaib Feda", email: "almarghulani@gmail.com", password: "password" }
+]);
 
 book = Book.create([
                      {

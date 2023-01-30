@@ -28,6 +28,12 @@ Note: Requires docker version >= 20.10.21 and docker-compose version >= 1.29.2. 
 
 The project is using rails-erd to generate the ERD using the models/db (see erd.png). The config is located at 1_src/.erdconfig and uses the graphviz library (added to Dockerfile). The erd is auto-generated on each `rails db:migrate` or `bundle exec rails db:migrate` but can be run manually using `bundle exec erd`.
 
+## Dummy Data
+- Check the the `1_src/db/seeds.rb` file for various development dummy data. You can run the seeds by running the `rails db:seed` command
+
+## Deployment Notes
+- A superadmin is created as part of the database migrations (email: `superadmin@app.com`, password: `password`). Please change the email and password of this user to the real superadmin's credentials from the application users dashboard before deploying to production!
+
 ## Branch Name Conventions:
 
 - For naming branches, **only use lowercase** letters 
