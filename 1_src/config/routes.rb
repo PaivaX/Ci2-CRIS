@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   }
   root "home#index"
   resources :projects
-  resources :institutions
-  
+
   namespace :admin do
     get '/', to: 'admin#index'
     resources :users
