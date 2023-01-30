@@ -12,6 +12,7 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN curl -sL https://deb.nodesource.com/setup_16.x  | bash -
 RUN apt-get -y install nodejs
+RUN apt-get -y install graphviz
 RUN npm install -g yarn
 RUN gem update --system && gem install bundler
 RUN mkdir /app
