@@ -87,10 +87,3 @@ gem 'mail_form'
 gem 'jquery-rails'
 
 gem 'bootstrap', '~> 5.2.2'
-gem "devise", "~> 4.8"
-
-gem 'mail_form'
-
-gem 'jquery-rails'
-
-gem 'bootstrap', '~> 5.2.2'
