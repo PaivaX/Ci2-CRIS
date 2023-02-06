@@ -4,4 +4,5 @@ class Project < ApplicationRecord
     validates :description, presence: true, length: { minimum: 10 }
     Project_role = ['Ongoing', 'Completed', 'Cancelled', 'Not funded']
     has_one_attached :avatar
+    has_and_belongs_to_many :articles
   end

@@ -1,2 +1,6 @@
 * text=auto
 *.sh eol=lf
+
+#Untrack ide files
+.idea
+.vscode

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_28_171544) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_05_174258) do
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,7 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_171544) do
 
   create_table "articles", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
-    t.string "authors"
     t.date "publish_date"
     t.integer "pages"
     t.text "abstract"
@@ -61,8 +60,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_171544) do
     t.string "thesis_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "articles_projects", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "project_id", null: false
-    t.index ["project_id"], name: "index_articles_on_project_id"
+    t.bigint "article_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_articles_projects_on_article_id"
+    t.index ["project_id"], name: "index_articles_projects_on_project_id"
+  end
+
+  create_table "articles_researchers", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "researcher_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_articles_researchers_on_article_id"
+    t.index ["researcher_id"], name: "index_articles_researchers_on_researcher_id"
   end
 
   create_table "institutions", charset: "utf8mb4", force: :cascade do |t|
@@ -121,4 +136,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_171544) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles_projects", "articles"
+  add_foreign_key "articles_projects", "projects"
+  add_foreign_key "articles_researchers", "articles"
+  add_foreign_key "articles_researchers", "researchers"
 end
