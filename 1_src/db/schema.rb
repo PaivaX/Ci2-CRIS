@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_174258) do
 
   create_table "articles", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
+    t.string "authors"
     t.date "publish_date"
     t.integer "pages"
     t.text "abstract"
