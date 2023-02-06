@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   }
   root "home#index"
   resources :projects
+  get '/projects/filter/:project_role', to: 'projects#filter', as: 'filter_projects'
+
   resources :researchers
   resources :institutions
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -8,7 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "main" %>
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.css" rel="stylesheet"/>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -29,7 +29,7 @@
           <% else %>
             <%= link_to "Login", user_session_path, 'data-cy' => 'link-login-topbar' %>
           <% end %>
-          <span class="ms-3">-</span>
+          <span class="ms-3">|</span>
           <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
           <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
           <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
@@ -47,15 +47,14 @@
         <nav id="navbar" class="navbar">
           <ul>
             <li><a href="/"><%= t('home') %></a></li>
-            <li><a href="#centro"><%= t('center') %></a></li>
-            <li><a href="#projects"><%= t('laboratories') %></a></li>
+            <li><a href="/#centro"><%= t('center') %></a></li>
+            <li><a href="/articles"><%= t('articles') %></a></li>
             <li><a href="/researchers"><%= t('researchers') %></a></li>
             <li><a href="/institutions"><%= t('institutions') %></a></li>
             <li class="dropdown"><a href="/projects"><span><%= t('projects') %></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
               <ul>
-                <li><a href="/projects">Projectos em execução</a></li>
-                <li><a href="#">Projectos concluídos</a></li>
-                <li><a href="#">Projeto TransCoTec</a></li>
+                <li><a href="/projects/filter/ongoing"><%= t('projects_on') %></a></li>
+                <li><a href="/projects/filter/completed"><%= t('projects_completed') %></a></li>
               </ul>
             </li>
             <li><a href="#contact"><%= t('contacts') %></a></li>

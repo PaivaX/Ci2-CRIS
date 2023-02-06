@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
     redirect_to action: :sent
       else
           flash.now[:error] = 'Could not send message'
-          #render :new, status: :unprocessable_entity
+          render :sent, status: :unprocessable_entity
       end
   end
 

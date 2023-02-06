@@ -41,7 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_174258) do
 
   create_table "articles", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
-    t.string "authors"
     t.date "publish_date"
     t.integer "pages"
     t.text "abstract"
@@ -91,6 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_174258) do
   end
 
   create_table "projects", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "researcher_id"
     t.string "title"
     t.text "description"
     t.string "project_role"
@@ -101,23 +101,32 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_174258) do
     t.date "fund_start_date"
     t.date "fund_end_date"
     t.string "funding_entity"
+    t.string "funding_program"
     t.string "name_program"
-    t.string "amount_program"
+    t.float "total_budget"
+    t.float "local_budget"
     t.string "grant_number"
     t.string "url_project"
+    t.string "researcher"
+    t.string "relationship"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["researcher_id"], name: "index_projects_on_researcher_id"
   end
 
   create_table "researchers", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "name"
+    t.string "user_type"
     t.date "birthday"
     t.text "resume"
     t.string "email"
     t.string "website"
     t.string "degree"
+    t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_researchers_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -141,4 +150,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_174258) do
   add_foreign_key "articles_projects", "projects"
   add_foreign_key "articles_researchers", "articles"
   add_foreign_key "articles_researchers", "researchers"
+  add_foreign_key "projects", "researchers"
+  add_foreign_key "researchers", "users"
 end

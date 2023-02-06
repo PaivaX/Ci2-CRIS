@@ -1,29 +1,32 @@
 <section id="contact" class="contact">
-<div class="container aos-init aos-animate">
-  <div class="col-lg-6">
-    <%= form_with model: @projects, :html => {:class => "php-email-form"} do |form| %>
-    <div class="project-form">
-      <div id="title-project-form"><%= t("project_information") %></div>
-      <div class="form-group">
-       <%= form.label :title, class: "col-md-4 control-label" %><br>
-       <%= form.text_field :title, class: "form-control" %>
-       <% @projects.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  <div class="container aos-init aos-animate">
+    <div class="col-lg-6">
+      <%= form_with model: @projects, :html => {:class => "php-email-form"} do |form| %>
+      <div class="project-form">
+       <div id="title-project-form"><%= t("project_information") %></div>
+        <div class="form-group">
+          <%= form.label :title, t('activerecord.attributes.projects.title'), class: "col-md-4 control-label" %><br>
+          <%= form.text_field :title, class: "form-control" %>
+          <% @projects.errors.full_messages_for(:title).each do |message| %>
+        <div class="alert alert-warning"><%= message %></div>
+      <% end %>
+    </div>
 
-  <div>
-    <%= form.label :description %><br>
-    <%= form.text_area :description, class: "form-control" %>
-    <% @projects.errors.full_messages_for(:description).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+    <div>
+      <%= form.label :description, t('activerecord.attributes.projects.description') %><br>
+      <%= form.text_area :description, class: "form-control" %>
+      <% @projects.errors.full_messages_for(:description).each do |message| %>
+      <div class="alert alert-warning"><%= message %></div>
+      <% end %>
+    </div>
 
   <div class="form-group">
-    <label for="project_role">Project Status</label><br>
+    <label for="project_role"><%= t("project_status") %></label><br>
       <%= form.collection_select :project_role, Project::Project_role, :to_s, :to_s, 
        :include_blank => true %>
+       <% @projects.errors.full_messages_for(:project_role).each do |message| %>
+        <div class="alert alert-warning"><%= message %></div>
+        <% end %>
     <div class="form-group col-md-4 mt-3 mt-md-0">
       <%= form.label 'Image upload' %>
       <%= form.file_field :avatar %><br>
@@ -49,11 +52,11 @@
   </div>
   <div class="row">
     <div class="form-group col-md-4">
-    <%= form.label :fund_start_date %><br>
+      <%= form.label :fund_start_date %><br>
       <%= form.date_field :fund_start_date, class: "form-control" %>
     </div>
     <div class="form-group col-md-4 mt-3 mt-md-0">
-    <%= form.label :fund_end_date %><br>
+      <%= form.label :fund_end_date %><br>
       <%= form.date_field :fund_end_date, class: "form-control" %>
     </div>
   </div>
@@ -62,16 +65,26 @@
 <div class="project-form">
   <div id="title-project-form">Funding</div>
   <div>
-  <%= form.label :title, "Funding Entity", class: "col-md-4 control-label" %><br>
+    <%= form.label :title, "Funding Entity", class: "col-md-4 control-label" %><br>
     <%= form.text_field :funding_entity, class: "form-control" %>
   </div>
-    <div>
+  <div>
+    <%= form.label :title, "Funding Program", class: "col-md-4 control-label" %><br>
+    <%= form.text_field :funding_program, class: "form-control" %>
+  </div>
+  <div>
     <%= form.label :title, "Program name", class: "col-md-4 control-label" %><br>
     <%= form.text_field :name_program, class: "form-control" %>
   </div>
-    <div>
-    <%= form.label :title, "Project Amount", class: "col-md-4 control-label" %><br>
-    <%= form.text_field :amount_program, class: "form-control" %>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :title, "Total Budget", class: "col-md-5 control-label" %><br>
+      <%= form.text_field :total_budget, class: "form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :title, "Local Budget", class: "col-md-5 control-label" %><br>
+      <%= form.text_field :local_budget, class: "form-control" %>
+    </div>
   </div>
 </div>
 
@@ -102,18 +115,32 @@
   <div id="title-project-form">Other Investigators</div>
   <div class="row">
     <div class="form-group col-md-8">
-    <%= form.text_field :description2, class: "form-control" %>
+      <%#= form.text_field :researcher, class: "form-control" %>
     </div>
     <div class="form-group col-md-1">
-    <p>button</p>
+      <p>button</p>
     </div>
   </div>
 </div>
 
+<div class="project-form">
+  <div id="title-project-form">Partners , {multiple: true}</div>
+    <div class="row">
+      <div class="form-group col-md-8">
+        <%= form.label :researcher %>
+        <%#= form.select :researcher, Researcher.pluck(:name, :id), {allow_blank: true} , {data: {contoller: 'slim'}} %>
+      </div>
+      <div class="form-group col-md-1">
+        <%= form.label :researchers %>
+        <%#= form.select :researchers, Researcher.pluck(:name, :id), {}, {multiple: true} %>
+      </div>
+    </div>
+  </div>
+
   <div class="text-center">
     <%= form.submit %>
   </div>
-<% end %>
+    <% end %>
   </div>
 </div>
 </section>

@@ -3,6 +3,10 @@ class ProjectsController < ApplicationController
     def index
       @projects = Project.all
     end
+
+    def filter
+      @projects = Project.where(project_role: params[:project_role])
+    end
     
     def show
       @projects = Project.find(params[:id])
@@ -45,6 +49,6 @@ class ProjectsController < ApplicationController
 
     private
       def projects_params
-        params.require(:project).permit(:title, :description, :project_role, :avatar, :start_date, :end_date, :funding_type, :fund_start_date, :fund_end_date, :funding_entity, :name_program, :amount_program, :grant_number, :url_project)
+        params.require(:project).permit(:title, :description, :project_role, :avatar, :start_date, :end_date, :funding_type, :fund_start_date, :fund_end_date, :funding_entity, :funding_program, :name_program, :total_budget, :local_budget, :grant_number, :url_project, :relationship)
       end
   end  
