@@ -1,58 +1,114 @@
 <section id="contact" class="contact">
 <div class="container aos-init aos-animate">
-<div class="col-lg-5">
-<%= form_with model: @projects, :html => {:class => "php-email-form"} do |form| %>
-  <div class="form-group">
-    <%= form.label :title, class: "col-md-4 control-label" %><br>
-    <%= form.text_field :title, class: "form-control" %>
-    <% @projects.errors.full_messages_for(:title).each do |message| %>
+  <div class="col-lg-6">
+    <%= form_with model: @projects, :html => {:class => "php-email-form"} do |form| %>
+    <div class="project-form">
+      <div id="title-project-form"><%= t("project_information") %></div>
+      <div class="form-group">
+       <%= form.label :title, class: "col-md-4 control-label" %><br>
+       <%= form.text_field :title, class: "form-control" %>
+       <% @projects.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
   <div>
     <%= form.label :description %><br>
-    <%= form.text_area :description, class: "form-control" %><br>
+    <%= form.text_area :description, class: "form-control" %>
     <% @projects.errors.full_messages_for(:description).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
-  <div>
-    <%= form.text_area :description2, class: "form-control" %>
+  <div class="form-group">
+    <label for="project_role">Project Status</label><br>
+      <%= form.collection_select :project_role, Project::Project_role, :to_s, :to_s, 
+       :include_blank => true %>
+    <div class="form-group col-md-4 mt-3 mt-md-0">
+      <%= form.label 'Image upload' %>
+      <%= form.file_field :avatar %><br>
+    </div>
   </div>
+      
   <div class="row">
     <div class="form-group col-md-4">
-    <%= form.label :start_date %><br>
+      <%= form.label :start_date %><br>
       <%= form.date_field :start_date, class: "form-control" %>
     </div>
     <div class="form-group col-md-4 mt-3 mt-md-0">
-    <%= form.label :end_date %><br>
+      <%= form.label :end_date %><br>
       <%= form.date_field :end_date, class: "form-control" %>
     </div>
   </div>
+</div>
 
+<div class="project-form">
+  <div id="title-project-form"><%= t("funding_type") %></div>
   <div>
-    <%= form.collection_select :role, Project::Role, :to_s, :to_s, 
-       :include_blank => true %>
+    <%= form.text_field :funding_type, class: "form-control" %>
   </div>
+  <div class="row">
+    <div class="form-group col-md-4">
+    <%= form.label :fund_start_date %><br>
+      <%= form.date_field :fund_start_date, class: "form-control" %>
+    </div>
+    <div class="form-group col-md-4 mt-3 mt-md-0">
+    <%= form.label :fund_end_date %><br>
+      <%= form.date_field :fund_end_date, class: "form-control" %>
+    </div>
+  </div>
+</div>
 
-<ul class="list-group">
-<div>
-  <h6>Grant Number:</h6>
-    <%= form.text_area :grant_number, class: "form-control" %>
-  </div>
+<div class="project-form">
+  <div id="title-project-form">Funding</div>
   <div>
-  <h6>URL:</h6>
-    <%= form.text_area :url_project, class: "form-control" %>
+  <%= form.label :title, "Funding Entity", class: "col-md-4 control-label" %><br>
+    <%= form.text_field :funding_entity, class: "form-control" %>
   </div>
+    <div>
+    <%= form.label :title, "Program name", class: "col-md-4 control-label" %><br>
+    <%= form.text_field :name_program, class: "form-control" %>
+  </div>
+    <div>
+    <%= form.label :title, "Project Amount", class: "col-md-4 control-label" %><br>
+    <%= form.text_field :amount_program, class: "form-control" %>
+  </div>
+</div>
+
+<div class="project-form">
+<div id="title-project-form">Project IDs</div>
+  <ul class="list-group">
+    <div class="row">
+      <div class="form-group col-md-5">
+        <h6>Grant Number:</h6>
+          <%= form.text_field :grant_number, class: "form-control" %>
+      </div>
+      <div class="form-group col-md-7">
+        <h6>URL:</h6>
+          <%= form.text_field :url_project, class: "form-control" %>
+      </div>
+    </div>
+  
   <div>
-<%= form.radio_button :relationship, "child" %>
-<%= form.label :relationship_part, "Part of" %>
-<%= form.radio_button :relationship, "adult" %>
-<%= form.label :relationship_self, "Self" %>
+    <%= form.radio_button :relationship, "child" %>
+    <%= form.label :relationship_part, "Part of" %>
+    <%= form.radio_button :relationship, "adult" %>
+    <%= form.label :relationship_self, "Self" %>
   </div>
-</ul>
+  </ul>
+</div>
+
+<div class="project-form">
+  <div id="title-project-form">Other Investigators</div>
+  <div class="row">
+    <div class="form-group col-md-8">
+    <%= form.text_field :description2, class: "form-control" %>
+    </div>
+    <div class="form-group col-md-1">
+    <p>button</p>
+    </div>
+  </div>
+</div>
 
   <div class="text-center">
     <%= form.submit %>

@@ -14,14 +14,18 @@
   <p><%= article.abstract %></p>
 <%end%>
 
-<%if article.project !=nil %>
+<%if article.projects.length != 0 %>
 <h5>Pertence ao projeto</h5>
-<a href="/projects/<%= article.project.id %>"><%= article.project.title%></a>
+  <% article.projects.each do |project|  %>
+    <a href="/projects/<%= project.id %>"><%= project.title%></a>
+  <%end%>
 <%end%>
 
-<%unless article.authors == nil || article.authors.empty?%>
-  <h5><%= article.class.column_for_attribute(:authors).name %></h5>
-  <p><%= article.authors %></p>
+<%if article.researchers.length !=0 %>
+  <h5>Autores</h5>
+  <% article.researchers.each do  |researcher|%>
+    <a href="/researchers/<%= researcher.id %>"><%= researcher.name%></a>
+  <%end%>
 <%end%>
 
 <%if article.publish_date != nil %>

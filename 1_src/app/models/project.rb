@@ -1,6 +1,8 @@
 class Project < ApplicationRecord
+    has_many :researcher 
     validates :title, presence: true
     validates :description, presence: true, length: { minimum: 10 }
-    Role = ['Opção 1', 'Opção 2', 'Opção 3']
-    has_many :articles
+    Project_role = ['Ongoing', 'Completed', 'Cancelled', 'Not funded']
+    has_one_attached :avatar
+    has_and_belongs_to_many :articles
   end

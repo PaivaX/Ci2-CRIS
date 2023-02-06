@@ -17,9 +17,15 @@
     <% end %>
   </div>
   <div>
-    <p>Projeto</p>
-  <%= form.select :project_id, Project.all.collect { |p| [ p.title, p.id]}, include_blank: true %>
+    <%= form.label "Projetos" %><br>
+    <%= select_tag :project_ids, options_from_collection_for_select(Project.all, :id, :title),  multiple: true%>
   </div>
+
+  <div>
+    <%= form.label "Authors" %><br>
+    <%= select_tag :researcher_ids, options_from_collection_for_select(Researcher.all, "id", "name"),  multiple: true%>
+  </div>
+
   <div>
     <%= form.label :authors %><br>
     <%= form.text_area :authors %><br>
@@ -69,6 +75,7 @@
   </div>
 
   <select id="myselection">
+    <option disabled selected value> -- select an option -- </option>
     <option value="Book"  >Book</option>
     <option value="Journal"  >Journal</option>
     <option value="Conference" >Conference</option>

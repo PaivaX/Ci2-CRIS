@@ -7,108 +7,88 @@
         </div>
       </div>
     </div>
-
     <div class="icon-boxes position-relative">
       <div class="container position-relative">
         <div class="row gy-4 mt-5">
-
           <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><%= Project.all.count %></div>
-              <h4 class="title"><a href="/projects" class="stretched-link">Projectos</a></h4>
+              <h4 class="title"><a href="/projects" class="stretched-link"><%= t('projects') %></a></h4>
             </div>
           </div>
-          <!--End Icon Box -->
-
           <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="icon-box">
-              <div class="icon"><%= Project.all.count %></div>
-              <h4 class="title"><a href="" class="stretched-link">Investigadores</a></h4>
+              <div class="icon"><%= Researcher.all.count %></div>
+              <h4 class="title"><a href="/researchers" class="stretched-link"><%= t('researchers') %></a></h4>
             </div>
           </div>
-          <!--End Icon Box -->
-
           <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><%= Article.all.count %></div>
-              <h4 class="title"><a href="" class="stretched-link">Publicações</a></h4>
+              <h4 class="title"><a href= <%= articles_url %> class="stretched-link"><%= t('works') %></a></h4>
             </div>
           </div>
-          <!--End Icon Box -->
-
           <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
             <div class="icon-box">
               <div class="icon">5</div>
-              <h4 class="title"><a href="" class="stretched-link">Vagas</a></h4>
+              <h4 class="title"><a href="" class="stretched-link"><%= t('openpositions') %></a></h4>
             </div>
           </div>
-          <!--End Icon Box -->
-
         </div>
       </div>
     </div>
-
     </div>
   </section>
   <!-- End Hero Section -->
 
 <main>
-
-    <!-- ======= About Us Section ======= -->
+    <!-- ======= About CI2 Section ======= -->
     <section id="centro" class="about">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
           <h2 data-cy="lbl-the-center-title">O Centro</h2>
-          <p data-cy="lbl-the-center-desc">Unidade de Investigação e Desenvolvimento financiada pela Fundação para a Ciência e a Tecnologia (UIDB/05567/2020 e UIDP/05567/2020)</p>
+          <p data-cy="lbl-the-center-desc"><%= t('centerinfo') %></p>
         </div>
-
+        <br>
         <div class="row gy-4">
           <div class="col-lg-6">
-            <p>O Centro de Investigação em Cidades Inteligentes (Ci2) reúne um grupo interdisciplinar de investigadores por forma a congregar os conhecimentos
-             e técnicas necessários para resolver os complexos problemas associados à criação de Cidades e Ambientes Inteligentes e Sustentáveis. Tem como principais
-              objetivos promover a inovação, facilitar a disseminação do conhecimento científico e tecnológico em estreita colaboração com a rede empresarial e social,
-               contribuir para a formação avançada e colaborar em estratégias de desenvolvimento regional, nacional e internacional.</p>
-            <p>O Ci2 é uma unidade de investigação financiada pela Fundação para a Ciência e a Tecnologia (FCT) UIDB/05567/2020.</p>
+            <%= raw t('aboutcenter') %>
           </div>
           <div class="col-lg-6">
             <div class="content ps-0 ps-lg-5">
-              <p class="fst-italic">
-                Palavras-chave
-              </p>
+              <p class="fst-italic"><%= t('keywords') %></p>
               <ul>
-                <li><i class="bi bi-check-circle-fill"></i> Cidades Inteligentes</li>
-                <li><i class="bi bi-check-circle-fill"></i> Análise de Dados</li>
-                <li><i class="bi bi-check-circle-fill"></i> Energia e Transportes</li>
-                <li><i class="bi bi-check-circle-fill"></i> Planeamento Ambiental e Urbano</li>
-                <li><i class="bi bi-check-circle-fill"></i> Sistemas de Informação</li>
-                <li><i class="bi bi-check-circle-fill"></i> Ambientes de Vida Assistida</li>
+                <li><i class="bi bi-check-circle-fill"></i> <%= t('smartcities') %></li>
+                <li><i class="bi bi-check-circle-fill"></i> <%= t('dataanalytics') %></li>
+                <li><i class="bi bi-check-circle-fill"></i> <%= t('energytransportation') %></li>
+                <li><i class="bi bi-check-circle-fill"></i> <%= t('envirurban') %></li>
+                <li><i class="bi bi-check-circle-fill"></i> <%= t('infsystems') %></li>
+                <li><i class="bi bi-check-circle-fill"></i> <%= t('ambienassisted') %></li>
               </ul>
             </div>
           </div>
         </div>
 
       </div>
-    </section><!-- End About Us Section -->
+    </section><!-- End About CI2 Section -->
 
       <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Contactos</h2>
+          <h2><%= t('contacts') %></h2>
           <p>Ci2 - Centro de Investigação em Cidades Inteligentes - Instituto Politécnico de Tomar</p>
         </div>
 
         <div class="row gx-lg-0 gy-4">
-
           <div class="col-lg-4">
-
             <div class="info-container d-flex flex-column align-items-center justify-content-center">
               <div class="info-item d-flex">
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
-                  <h4>Localização:</h4>
+                  <h4><%= t('localization') %>:</h4>
                   <p>Quinta do Contador | Estrada da Serra | 2300-313 Tomar</p>
                 </div>
               </div><!-- End Info Item -->
@@ -128,40 +108,11 @@
                   <p>+351 249 328 100</p>
                 </div>
               </div><!-- End Info Item -->
-
-              <div class="info-item d-flex">
-                <i class="bi bi-clock flex-shrink-0"></i>
-                <div>
-                  <h4>Horário</h4>
-                  <p>Seg-Sex: 09AM - 6PM</p>
-                </div>
-              </div><!-- End Info Item -->
             </div>
           </div>
 
-          <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Nome" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Assunto" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="7" placeholder="Mensagem" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
+          <div class="col-lg-8">      
+            <%= render template: "contacts/new" %>
           </div><!-- End Contact Form -->
 
         </div>

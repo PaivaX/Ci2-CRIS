@@ -18,15 +18,13 @@
     <% end %>
   </div>
   <div>
-    <p>Projeto</p>
-    <%= form.select :project_id, Project.all.collect { |p| [ p.title, p.id]}, include_blank: true %>
+    <%= form.label "Authors" %><br>
+    <%= form.collection_check_boxes :project_ids, Project.all, :id, :title %>
   </div>
+
   <div>
-    <%= form.label :authors %><br>
-    <%= form.text_area :authors %><br>
-    <% @article.errors.full_messages_for(:authors).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <%= form.label "Authors" %><br>
+    <%= form.collection_check_boxes :researcher_ids, Researcher.all, :id, :name %>
   </div>
 
   <div>

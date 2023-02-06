@@ -42,9 +42,9 @@ class ProjectsController < ApplicationController
   
       redirect_to root_path, status: :see_other
     end
-  
+
     private
       def projects_params
-        params.require(:project).permit(:title, :description, :start_date, :end_date, :role, :url_project)
+        params.require(:project).permit(:title, :description, :project_role, :avatar, :start_date, :end_date, :funding_type, :fund_start_date, :fund_end_date, :funding_entity, :name_program, :amount_program, :grant_number, :url_project)
       end
   end  

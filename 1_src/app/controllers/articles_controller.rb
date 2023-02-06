@@ -2,8 +2,6 @@ class ArticlesController < ApplicationController
   #before_action :authenticate_user!, :except => [:index, :show, :listSelect]
   def index
     @articles = Article.all
-    @projects = Project.all
-
   end
 
   def listSelect
@@ -11,11 +9,13 @@ class ArticlesController < ApplicationController
   end
 
   def create
-
     @article = Article.new(getParamsCreate(params[:article][:type]))
-    #byebug
+
+      associateProjectsToArticle(params[:project_ids])
+      associateResearchersToArticle(params[:researcher_ids])
     if @article.save
-      redirect_to "articles#index"
+
+      redirect_to articles_url
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,14 +34,24 @@ class ArticlesController < ApplicationController
   end
 
   def update
+
     @article = Article.find(params[:id])
 
+    ids = params[:project_ids]
+
+    if(ids.length != 0)
+      @article.projects.clear
+      associateProjectsToArticle(ids)
+    end
+
+
+
     if @article.update(getParamsEdit(@article.type))
-      redirect_to root_path
+      redirect_to article_url
     else
       render :edit, status:  :unprocessable_entity
+    end
   end
-end
 
   def destroy
     @article = Article.find(params[:id])
@@ -52,8 +62,23 @@ end
 
   private
 
+  def associateProjectsToArticle(ids)
+    ids.each do |id|
+      unless id.to_s.strip.empty?
+        @article.projects << Project.find(id)
+      end
+    end
+  end
+
+  def associateResearchersToArticle(ids)
+    ids.each do |id|
+      unless id.to_s.strip.empty?
+        @article.researchers << Researcher.find(id)
+      end
+    end
+  end
+
   def getParamsCreate(type)
-    byebug
     case type
     when 'Book'
       return book_params
@@ -114,19 +139,19 @@ end
   end
 
   def conference_params
-    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :project_id, :proceedings, :place, :type)
+    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :proceedings, :place, :type)
   end
 
   def book_params
-    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :project_id, :edition, :publisher, :type)
+    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :edition, :publisher, :type)
   end
 
   def journal_params
-    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :project_id, :journal_name, :type)
+    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :journal_name, :type)
   end
 
   def thesis_params
-    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :project_id, :university, :thesis_type, :type)
+    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids,  :university, :thesis_type, :type)
   end
 
 end

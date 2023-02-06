@@ -17,9 +17,22 @@ Note: Requires docker version >= 20.10.21 and docker-compose version >= 1.29.2. 
 - To constantly view the logs of the rails container, run the script `5_rails_container_follow_logs.sh`. To exit, press `Ctrl + C`
 
 ## Development Notes
-- You need to restart the rails server everytime you make config changes to ther server
+- You need to restart the rails server everytime you make config changes to the server
 - If any of the scripts fail, just try to run it again 2-3 times
 - It is recommended to continuously monitor the rails container logs to be aware of any errors
+- You might also have to run a combination of `rails db:drop`, `rails db:prepare` / `rails db:setup` and `rails db:migrate` when changing between different development branches.
+
+## Entity Relationship Diagram
+
+![erd](./1_src/erd.png? "ER Diagram")
+
+The project is using rails-erd to generate the ERD using the models/db (see erd.png). The config is located at 1_src/.erdconfig and uses the graphviz library (added to Dockerfile). The erd is auto-generated on each `rails db:migrate` or `bundle exec rails db:migrate` but can be run manually using `bundle exec erd`.
+
+## Dummy Data
+- Check the the `1_src/db/seeds.rb` file for various development dummy data. You can run the seeds by running the `rails db:seed` command
+
+## Deployment Notes
+- A superadmin is created as part of the database migrations (email: `superadmin@app.com`, password: `password`). Please change the email and password of this user to the real superadmin's credentials from the application users dashboard before deploying to production!
 
 ## Branch Name Conventions:
 

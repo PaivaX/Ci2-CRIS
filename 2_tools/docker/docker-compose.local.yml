@@ -39,3 +39,10 @@ services:
       - 3307:3306
     expose:
       - '3306'
+
+  mailcatcher:
+    container_name: mailcatcher-ci2-cris
+    image: yappabe/mailcatcher
+    ports:
+      - 1025:1025
+      - 1080:1080
