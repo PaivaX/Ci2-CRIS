@@ -1,30 +1,24 @@
-<h1>Articles</h1>
-
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @articles.each do |article| %>
-    <tr>
-      <%if article.title != nil %>
-        <td><a href="/articles/<%= article.id %>"> <%= article.title %></a></td>
-      <%else %>
-        <td><a href="/articles/<%= article.id %>"> "sem títle" </a></td>
-      <%end%>
-
-      <%if article.type != nil %>
-        <td><a href="articles/searchByType/<%=article.type%>"> <%=article.type %> </a></td>
-        <%else %>
-        <td>Article</td>
-      <%end %>
-    </tr>
+<div class="section-header">
+  <h2>Articles</h2>
+</div>
+<div class="row">
+  <% if user_signed_in? && ['user','admin','superadmin'].include?(current_user.user_type) %>
+    <%= link_to "New Article", new_article_path, :class=>"btn btn-primary" %>
   <% end %>
-  </tbody>
-</table>
-
-<%= link_to "New Article", new_article_path, :class=>"btn btn-primary" %>
+</div>
+<section id="projects" class="services sections-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+      <% @articles.each do |article| %>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item  position-relative">
+            <h5><a href="/articles/<%= article.id %>"> <%= article.title %></a></h5>
+            <p class="post-category"><%= article.abstract.first(220) %></p>
+            <a href="articles/searchByType/<%=article.type%>"> <%=article.type %></a>
+          </div>
+        </div>
+    <% end %>
+    </div>
+  </div>
+</section>
 

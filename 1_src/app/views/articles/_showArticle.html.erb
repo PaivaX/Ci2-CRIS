@@ -1,83 +1,77 @@
 
-<%if article.title != nil %>
-  <h5><%= article.class.column_for_attribute(:title).name %></h5>
-  <h1><%= article.title %></h1>
-<%end%>
+<div class="blog">
+  <div class="container aos-init aos-animate">
+    <article class="blog-details">
+      <div class="row">
+        <div class="col-md-6">
+          <ul>
+            <% article.researchers.each do  |researcher|%>
+              <li class="d-flex align-items-center"><i class="bi bi-person"></i>
 
-<%if article.type != nil %>
-  <h5><%= article.class.column_for_attribute(:type).name %></h5>
-  <p><%= article.type %></p>
-<%end%>
+                <a href="/researchers/<%= researcher.id %>"><%= researcher.name%></a>
 
-<%if article.abstract != nil %>
-  <h5><%= article.class.column_for_attribute(:abstract).name %></h5>
-  <p><%= article.abstract %></p>
-<%end%>
+              </li>
+            <%end%>
+            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href=""><time datetime= <%= article.publish_date %>><%= article.publish_date %></time></a></li>
+            <li class="d-flex align-items-center"><i class="bi bi-app"></i> <a href=""><%= article.url %></a></li>
+            <li class="d-flex align-items-center"><i class="bi bi-book"></i> <a href=""><%= article.pages %></a></li>
+            <li class="d-flex align-items-center"><i class="bi bi-link"></i> <a href=""><%= article.ids %></a></li>
+            <li class="d-flex align-items-center"><i class="bi bi-file-earmark-word"></i> <%= article.keywords %></li>
+            <%case article.type %>
+            <%when 'Book'%>
+              <li class="d-flex align-items-center"><i class="bi bi-book"></i> <%= article.type %></li>
+              <li class="d-flex align-items-center"><i class="bi bi-book"></i><%= article.class.column_for_attribute(:edition).name %> : <a href=""> <%= article.edition %></a></li>
+              <li class="d-flex align-items-center"><i class="bi bi-book"></i><%= article.class.column_for_attribute(:publisher).name %> : <a href=""> <%= article.publisher %></a></li>
 
-<%if article.projects.length != 0 %>
-<h5>Pertence ao projeto</h5>
-  <% article.projects.each do |project|  %>
-    <a href="/projects/<%= project.id %>"><%= project.title%></a>
-  <%end%>
-<%end%>
+            <%when 'Thesis'%>
+              <li class="d-flex align-items-center"><i class="bi-arrow-right-square-fill"></i> <%= article.type %></li>
 
-<%if article.researchers.length !=0 %>
-  <h5>Autores</h5>
-  <% article.researchers.each do  |researcher|%>
-    <a href="/researchers/<%= researcher.id %>"><%= researcher.name%></a>
-  <%end%>
-<%end%>
+              <li class="d-flex align-items-center"><i class="bi-arrow-right-square-fill"></i><%= article.class.column_for_attribute(:university).name %> : <a href=""> <%= article.university %></a></li>
+              <li class="d-flex align-items-center"><i class="bi-arrow-right-square-fill"></i><%= article.class.column_for_attribute(:thesis_type).name %> : <a href=""> <%= article.thesis_type %></a></li>
 
-<%if article.publish_date != nil %>
-  <h5><%= article.class.column_for_attribute(:publish_date).name %></h5>
-  <p><%= article.publish_date %></p>
-<%end%>
-
-<%if article.pages != nil %>
-  <h5><%= article.class.column_for_attribute(:pages).name %></h5>
-  <p><%= article.pages %></p>
-<%end%>
-
-<%unless article.keywords == nil || article.keywords.empty? %>
-  <h5><%= article.class.column_for_attribute(:keywords).name %></h5>
-  <p><%= article.keywords %></p>
-<%end%>
-
-<%unless article.url == nil || article.url.empty?%>
-  <h5><%= article.class.column_for_attribute(:url).name %></h5>
-  <p><%= article.url %></p>
-<%end%>
-
-<%unless article.ids == nil || article.ids.empty? %>
-  <h5><%= article.class.column_for_attribute(:ids).name %></h5>
-  <p><%= article.ids %></p>
-<%end%>
+            <%when 'Conference'%>
+              <li class="d-flex align-items-center"><i class="bi bi-camera-video"></i> <%= article.type %></li>
+              <li class="d-flex align-items-center"><i class="bi bi-camera-video"></i><%= article.class.column_for_attribute(:proceedings).name %> : <a href=""> <%= article.proceedings %></a></li>
+              <li class="d-flex align-items-center"><i class="bi bi-camera-video"></i><%= article.class.column_for_attribute(:place).name %> : <a href=""> <%= article.place %></a></li>
 
 
-<%case article.type %>
-<%when 'Book'%>
-  <h5><%= article.class.column_for_attribute(:edition).name %></h5>
-  <p><%= article.edition %></p>
+            <%when 'Journal'%>
+              <li class="d-flex align-items-center"><i class="bi bi-book-half"></i> <%= article.type %></li>
+              <li class="d-flex align-items-center"><i class="bi bi-camera-video"></i><%= article.class.column_for_attribute(:journal_name).name %> : <a href=""> <%= article.journal_name %></a></li>
 
-  <h5><%= article.class.column_for_attribute(:publisher).name %></h5>
-  <p><%= article.publisher %></p>
+          <%else %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
 
-<%when 'Thesis'%>
-  <h5><%= article.class.column_for_attribute(:university).name %></h5>
-  <p><%= article.university %></p>
+      <div class="content">
+        <p><%= article.abstract %></p>
+        <p></p>
+        <div class="col-md-6">
+          <ul>
+            <% article.projects.each do |project|  %>
+              <li class="d-flex align-items-center"><i class="bi bi-kanban"></i> <a href="/projects/<%= project.id %>"><%= project.title%></a> </li>
+            <%end%>
+          </ul>
+        </div>
+      </div>
+      <div class="meta-bottom">
+        <% #Opção de editar e apagar só aparece se estiver com o login efetuado %>
+        <% if user_signed_in? && ['user','admin','superadmin'].include?(current_user.user_type) %>
+          <i class="bi bi-eraser"></i>
+          <ul class="cats">
+            <li><%= link_to "Edit", edit_article_path(article) %></li>
+            <li><%= link_to "Destroy", article_path(article), data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"
+            } %></li>
+          </ul>
+        <% end %>
+        <%= link_to "Return  to Index", "/articles" %>
+      </div>
 
-  <h5><%= article.class.column_for_attribute(:thesis_type).name %></h5>
-  <p><%= article.thesis_type %></p>
+    </article>
+  </div>
+</div>
 
-<%when 'Conference'%>
-  <h5><%= article.class.column_for_attribute(:proceedings).name %></h5>
-  <p><%= article.proceedings %></p>
-
-  <h5><%= article.class.column_for_attribute(:place).name %></h5>
-  <p><%= article.place %></p>
-
-<%when 'Journal'%>
-  <h5><%= article.class.column_for_attribute(:journal_name).name %></h5>
-  <p><%= article.journal_name %></p>
-<%else %>
-<% end %>

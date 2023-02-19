@@ -22,9 +22,7 @@
       <p><%= @projects.description %></p>
       <p></p>
       <p><%= @projects.project_role %></p>
-      <% @projects.articles.each do |article|  %>
-        <a href="/articles/<%= article.id %>"><%= article.title%></a>
-      <%end%>
+
     </div>
         <div class="meta-bottom">
           <i class="bi bi-calendar"></i>
@@ -48,7 +46,10 @@
                 </ul>
         <% end %>
           </div>
-
+      <div class="meta-bottom">
+      <%= render "articles/listArticles", article: @projects.articles %>
+      </div>
     </article>
+
   </div>
 </div>

@@ -17,9 +17,13 @@ User.create([
     { user_type: "superadmin", name: "Shoaib Feda", email: "almarghulani@gmail.com", password: "password" }
 ]);
 
+institution = Institution.create(name: "IPT")
+institution = Institution.create(name: "IPL")
+institution = Institution.create(name: "IP da vida")
+
 book1 = Article.create(
                        title: "Cozer batatas: scientific review",
-                       abstract: "Uma análise científica sobre o contexto físico da cosedura de batatas",
+                       abstract: "Uma análise científica sobre o contexto físico da cozedura de batatas",
                        edition: "First edition",
                        publisher: "Porto editora",
                        type:"Book"

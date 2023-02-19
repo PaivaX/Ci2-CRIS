@@ -1,7 +1,30 @@
 <h1>All <% @articles.first.title%></h1>
 
-<% @articles.each do |article| %>
-  <%= render "showArticle", article: article %>
-<% end %>
+<section id="projects" class="services sections-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+      <% @articles.each do |article| %>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item  position-relative">
+            <h5><a href="/articles/<%= article.id %>"> <%= article.title %></a></h5>
+            <p class="post-category"><%= article.abstract.first(220) %></p>
+            <a href="articles/searchByType/<%=article.type%>"> <%=article.type %></a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
 
-<%= link_to "Return  to Index", "/articles" %>
+
+<%= link_to "Return  to Index", "/articles"%>
+
+<%
+=begin
+<% @articles.each do |article|
+  <%= render "showArticle", article: article
+<% end
+
+<%= link_to "Return  to Index", "/articles"
+=end
+%>

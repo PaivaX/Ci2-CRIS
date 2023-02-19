@@ -33,6 +33,10 @@
       <%= form.label 'Image upload' %>
       <%= form.file_field :avatar %><br>
     </div>
+        <div>
+            <%= form.label "Institution" %><br>
+            <%= select_tag :institution_ids, options_from_collection_for_select(Institution.all, "id", "name"),  multiple: true%>
+        </div>
       </div>
     </div>
 
