@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
     has_one :user
-    #belongs_to :researcher 
+    has_and_belongs_to_many :researchers 
     validates :title, presence: true
     validates :description, presence: true, length: { minimum: 10 }
     validates :project_role, presence: true

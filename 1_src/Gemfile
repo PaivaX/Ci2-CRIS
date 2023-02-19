@@ -87,3 +87,5 @@ gem 'mail_form'
 gem 'jquery-rails'
 
 gem 'bootstrap', '~> 5.2.2'
+
+gem 'will_paginate', '~> 3.0'

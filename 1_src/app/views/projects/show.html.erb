@@ -6,14 +6,18 @@
   <div class="container aos-init aos-animate">
     <article class="blog-details">
       <div class="row">
-        <div class="col-md-5"><%= image_tag("banner.png", class:"img-fluid") %></div>
+        <div class="col-md-5"><% if @projects.avatar.attached? %>
+                      <%= image_tag @projects.avatar, width: '100%', height: '150px' %>
+                    <% elsif %>
+                      <%= image_tag("banner.png", width: '100%', height: '150px') %>
+                    <% end %></div>
         <div class="col-md-6">
           <ul>
-            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href=""><%#= @projects.researcher %></a></li>
+            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href=""><%= @projects.researcher %></a></li>
             <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href=""><time datetime="2020-01-01">23/01/2023</time></a></li>
             <li class="d-flex align-items-center"><i class="bi bi-link"></i> <a href=""><%= @projects.url_project %></a></li>
             <li class="d-flex align-items-center"><i class="bi bi-link"></i> <a href=""><%= @projects.name_program %></a></li>
-            <li class="d-flex align-items-center"><i class="bi bi-link"></i> <a href=""><%= @projects.name_program %></a></li>
+            <li class="d-flex align-items-center"><i class="bi bi-calendar-check-fill"></i> <%= @projects.project_role %></li>
           </ul>
         </div>
       </div>
@@ -21,21 +25,24 @@
     <div class="content">
       <p><%= @projects.description %></p>
       <p></p>
-      <p><%= @projects.project_role %></p>
-
+      <p></p>
+      <p><h5><%= t('articles') %>:</h5></p>
+      <div class="list-group">
+      <%= render "articles/listArticles", article: @projects.articles %>
+      </div>
     </div>
         <div class="meta-bottom">
           <i class="bi bi-calendar"></i>
                 <ul class="cats">
-                  <li>Status: <%= @projects.project_role %></li> 
+                  <li><%= t('project_status') %>: <%= @projects.project_role %></li> 
                 </ul>
           <i class="bi bi-calendar"></i>
                 <ul class="cats">
-                  <li>Start Date: <%= @projects.start_date %></li> 
+                  <li><%= t('start_date') %>: <%= @projects.start_date %></li> 
                 </ul>
           <i class="bi bi-calendar-x"></i>
                 <ul class="cats">
-                  <li>End Date: <%= @projects.end_date %></li>
+                  <li><%= t('end_date') %>: <%= @projects.end_date %></li>
                 </ul>
         <% #Opção de editar e apagar só aparece se estiver com o login efetuado %>
         <% if user_signed_in? && ['user','admin','superadmin'].include?(current_user.user_type) %>
@@ -46,9 +53,6 @@
                 </ul>
         <% end %>
           </div>
-      <div class="meta-bottom">
-      <%= render "articles/listArticles", article: @projects.articles %>
-      </div>
     </article>
 
   </div>
