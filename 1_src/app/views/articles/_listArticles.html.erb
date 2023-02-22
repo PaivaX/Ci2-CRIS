@@ -1,0 +1,30 @@
+<div class="container" data-aos="fade-up">
+  <table class="table table-light">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Abstract</th>
+      <th scope="col">Pages</th>
+      <th scope="col">Publish date</th>
+      <th scope="col">Type</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <% article.each do |article| %>
+      <tr>
+        <td scope="row"><%= article.ids %></td>
+
+        <td><a href="../articles/<%= article.id %>"> <%= article.title %></a> </td>
+        <td><%= article.abstract.first(50) %></td>
+        <td><%= article.pages %></td>
+        <td><%= article.publish_date %></td>
+        <td><%=article.type%></td>
+      </tr>
+    <% end %>
+    <tr>
+    </tr>
+    </tbody>
+  </table>
+</div>

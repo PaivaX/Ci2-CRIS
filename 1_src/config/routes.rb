@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   }
   root "home#index"
   resources :projects
+  get '/projects/filter/:project_role', to: 'projects#filter', as: 'filter_projects'
+
   resources :researchers
   resources :institutions
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -13,7 +15,14 @@ Rails.application.routes.draw do
   get 'contacts/sent'
 
   # Defines the root path route ("/")
-  root "articles#index"
+  namespace :admin do
+    get '/', to: 'admin#index'
+    resources :users
+    post '/users/:id/block-unblock', to: 'users#block_unblock', as: 'block_unblock_user'
+  end
+
+  # Defines the root path route ("/")
+
   resources :articles
   get 'articles/searchByType/:type', to: 'articles#listSelect'
 end

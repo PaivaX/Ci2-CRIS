@@ -5,44 +5,55 @@
 <div class="blog">
   <div class="container aos-init aos-animate">
     <article class="blog-details">
-      <div class="post-img">
-        <img src="https://i0.wp.com/samaritanfundprogram.com/wp-content/uploads/2021/07/SFP-Logo-PNG.png?resize=300%2C150&ssl=1" alt="" class="img-fluid">
+      <div class="row">
+        <div class="col-md-5"><% if @projects.avatar.attached? %>
+                      <%= image_tag @projects.avatar, width: '100%', height: '150px' %>
+                    <% elsif %>
+                      <%= image_tag("banner.png", width: '100%', height: '150px') %>
+                    <% end %></div>
+        <div class="col-md-6">
+          <ul>
+            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href=""><%= @projects.researcher %></a></li>
+            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href=""><time datetime="2020-01-01">23/01/2023</time></a></li>
+            <li class="d-flex align-items-center"><i class="bi bi-link"></i> <a href=""><%= @projects.url_project %></a></li>
+            <li class="d-flex align-items-center"><i class="bi bi-link"></i> <a href=""><%= @projects.name_program %></a></li>
+            <li class="d-flex align-items-center"><i class="bi bi-calendar-check-fill"></i> <%= @projects.project_role %></li>
+          </ul>
+        </div>
       </div>
-      <div class="meta-top">
-        <ul>
-          <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="">Rui Paiva</a></li>
-          <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href=""><time datetime="2020-01-01">23/01/2023</time></a></li>
-          <li class="d-flex align-items-center"><i class="bi bi-link"></i> <a href=""><%= @projects.url_project %></a></li>
-        </ul>
-      </div>
+
     <div class="content">
       <p><%= @projects.description %></p>
       <p></p>
-      <p><%= @projects.project_role %></p>
-      <% @projects.articles.each do |article|  %>
-        <a href="/articles/<%= article.id %>"><%= article.title%></a>
-      <%end%>
+      <p></p>
+      <p><h5><%= t('articles') %>:</h5></p>
+      <div class="list-group">
+      <%= render "articles/listArticles", article: @projects.articles %>
+      </div>
     </div>
         <div class="meta-bottom">
           <i class="bi bi-calendar"></i>
                 <ul class="cats">
-                  <li>Status: <%=  %></li> 
+                  <li><%= t('project_status') %>: <%= @projects.project_role %></li> 
                 </ul>
           <i class="bi bi-calendar"></i>
                 <ul class="cats">
-                  <li>Start Date: <%= @projects.start_date %></li> 
+                  <li><%= t('start_date') %>: <%= @projects.start_date %></li> 
                 </ul>
           <i class="bi bi-calendar-x"></i>
                 <ul class="cats">
-                  <li>End Date: <%= @projects.end_date %></li>
+                  <li><%= t('end_date') %>: <%= @projects.end_date %></li>
                 </ul>
+        <% #Opção de editar e apagar só aparece se estiver com o login efetuado %>
+        <% if user_signed_in? && ['user','admin','superadmin'].include?(current_user.user_type) %>
           <i class="bi bi-eraser"></i>
                 <ul class="cats">
                   <li><%= link_to "Edit", edit_project_path(@projects) %> </li> | 
                   <li><%= link_to "Destroy", @projects, method: :delete, data: {confirm: 'Are you sure?'} %></li>
                 </ul>
+        <% end %>
           </div>
-
     </article>
+
   </div>
 </div>

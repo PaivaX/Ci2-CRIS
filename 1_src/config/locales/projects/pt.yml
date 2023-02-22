@@ -1,3 +1,13 @@
 pt:
   project_information: "Informação do Projeto"
   funding_type: "Tipo de Fundo"
+  projects_on: "Projectos em execução"
+  projects_completed: "Projectos concluídos" 
+  project_status: "Status do Projecto"
+  start_date: "Data de início"
+  end_date: "Data de Término"
+  activerecord:
+    attributes:
+      projects:
+        title: "Titulo"
+        description: "Descrição"
