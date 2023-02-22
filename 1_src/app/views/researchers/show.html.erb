@@ -57,6 +57,14 @@
               </div>
               </div>
             </div>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="lead fw-normal mb-0">Institutions</p>
+              <div class="p-4" style="background-color: #f8f9fa;">
+              <% @researchers.institutions.each do |institution|%>
+                <p><%= link_to institution.name, institution_path(institution) %></p>
+              <% end %>
+              </div>
+            </div>
           </div>
           <%= render "articles/listArticles", article: @researchers.articles %>
         </div>
