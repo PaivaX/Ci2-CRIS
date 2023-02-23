@@ -1,5 +1,6 @@
-<h1>All <% @articles.first.title%></h1>
-
+<div class="section-header">
+<h2>All <%= @articles.first.type.pluralize(@article)  %></h2>
+</div>
 <section id="projects" class="services sections-bg">
   <div class="container" data-aos="fade-up">
     <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
@@ -18,13 +19,3 @@
 
 
 <%= link_to "Return  to Index", "/articles"%>
-
-<%
-=begin
-<% @articles.each do |article|
-  <%= render "showArticle", article: article
-<% end
-
-<%= link_to "Return  to Index", "/articles"
-=end
-%>

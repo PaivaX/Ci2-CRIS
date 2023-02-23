@@ -12,33 +12,58 @@
 
               </li>
             <%end%>
+            <% if article.publish_date %>
             <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href=""><time datetime= <%= article.publish_date %>><%= article.publish_date %></time></a></li>
+            <% end %>
+            <% if article.url %>
             <li class="d-flex align-items-center"><i class="bi bi-app"></i> <a href=""><%= article.url %></a></li>
+            <% end %>
+            <% if article.pages %>
             <li class="d-flex align-items-center"><i class="bi bi-book"></i> <a href=""><%= article.pages %></a></li>
+            <% end %>
+            <% if article.ids %>
             <li class="d-flex align-items-center"><i class="bi bi-link"></i> <a href=""><%= article.ids %></a></li>
+            <% end %>
+            <% if article.keywords %>
             <li class="d-flex align-items-center"><i class="bi bi-file-earmark-word"></i> <%= article.keywords %></li>
+            <% end %>
             <%case article.type %>
             <%when 'Book'%>
+              <% if  article.type %>
               <li class="d-flex align-items-center"><i class="bi bi-book"></i> <%= article.type %></li>
+              <% end %>
+              <% if  article.edition %>
               <li class="d-flex align-items-center"><i class="bi bi-book"></i><%= article.class.column_for_attribute(:edition).name %> : <a href=""> <%= article.edition %></a></li>
-              <li class="d-flex align-items-center"><i class="bi bi-book"></i><%= article.class.column_for_attribute(:publisher).name %> : <a href=""> <%= article.publisher %></a></li>
-
+              <% end %>
+              <% if  article.publisher %>
+                <li class="d-flex align-items-center"><i class="bi bi-book"></i><%= article.class.column_for_attribute(:publisher).name %> : <a href=""> <%= article.publisher %></a></li>
+              <% end %>
             <%when 'Thesis'%>
+
               <li class="d-flex align-items-center"><i class="bi-arrow-right-square-fill"></i> <%= article.type %></li>
-
+              <% if  article.university %>
               <li class="d-flex align-items-center"><i class="bi-arrow-right-square-fill"></i><%= article.class.column_for_attribute(:university).name %> : <a href=""> <%= article.university %></a></li>
-              <li class="d-flex align-items-center"><i class="bi-arrow-right-square-fill"></i><%= article.class.column_for_attribute(:thesis_type).name %> : <a href=""> <%= article.thesis_type %></a></li>
-
+              <% end %>
+              <% if  article.thesis_type%>
+                <li class="d-flex align-items-center"><i class="bi-arrow-right-square-fill"></i><%= article.class.column_for_attribute(:thesis_type).name %> : <a href=""> <%= article.thesis_type %></a></li>
+              <% end %>
             <%when 'Conference'%>
               <li class="d-flex align-items-center"><i class="bi bi-camera-video"></i> <%= article.type %></li>
+              <% if  article.proceedings%>
               <li class="d-flex align-items-center"><i class="bi bi-camera-video"></i><%= article.class.column_for_attribute(:proceedings).name %> : <a href=""> <%= article.proceedings %></a></li>
-              <li class="d-flex align-items-center"><i class="bi bi-camera-video"></i><%= article.class.column_for_attribute(:place).name %> : <a href=""> <%= article.place %></a></li>
-
+              <% end %>
+              <% if  article.place %>
+                <li class="d-flex align-items-center"><i class="bi bi-camera-video"></i><%= article.class.column_for_attribute(:place).name %> : <a href=""> <%= article.place %></a></li>
+              <% end %>
 
             <%when 'Journal'%>
               <li class="d-flex align-items-center"><i class="bi bi-book-half"></i> <%= article.type %></li>
+              <% if  article.journal_name %>
               <li class="d-flex align-items-center"><i class="bi bi-camera-video"></i><%= article.class.column_for_attribute(:journal_name).name %> : <a href=""> <%= article.journal_name %></a></li>
+              <% end %>
 
+            <%when 'Report'%>
+              <li class="d-flex align-items-center"><i class="bi bi-flag"></i> <%= article.type %></li>
           <%else %>
             <% end %>
           </ul>
