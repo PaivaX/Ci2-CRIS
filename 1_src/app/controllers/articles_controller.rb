@@ -37,13 +37,21 @@ class ArticlesController < ApplicationController
 
     @article = Article.find(params[:id])
 
-    ids = params[:project_ids]
-
-    if(ids.length != 0)
-      @article.projects.clear
-      associateProjectsToArticle(ids)
+    project_ids = params[:project_ids]
+    if project_ids
+      if(project_ids.length != 0)
+        @article.projects.clear
+        associateProjectsToArticle(project_ids)
+      end
     end
 
+    researcher_ids = params[:researcher_ids]
+    if researcher_ids
+      if(researcher_ids.length != 0)
+        @article.projects.clear
+        associateProjectsToArticle(researcher_ids)
+      end
+    end
 
 
     if @article.update(getParamsEdit(@article.type))

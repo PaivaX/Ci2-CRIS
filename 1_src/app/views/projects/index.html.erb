@@ -3,8 +3,8 @@
 </div>
 <div class="row">
 <% if user_signed_in? && ['user','admin','superadmin'].include?(current_user.user_type) %>
-  <%= link_to "New Project", new_project_path, :class=>"btn btn-primary" %>
-<% end %>
+
+<% end %><%= link_to "New Project", new_project_path, :class=>"btn btn-primary" %>
 </div>
 <section id="projects" class="services sections-bg">
   <div class="container" data-aos="fade-up">

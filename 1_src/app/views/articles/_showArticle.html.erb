@@ -57,12 +57,12 @@
         </div>
       </div>
       <div class="meta-bottom">
+
         <% #Opção de editar e apagar só aparece se estiver com o login efetuado %>
         <% if user_signed_in? && ['user','admin','superadmin'].include?(current_user.user_type) %>
-          <i class="bi bi-eraser"></i>
           <ul class="cats">
-            <li><%= link_to "Edit", edit_article_path(article) %></li>
-            <li><%= link_to "Destroy", article_path(article), data: {
+            <li><i class="bi bi-pencil"></i><%= link_to "Edit", edit_article_path(article) %></li>
+            <li><i class="bi bi-eraser"></i><%= link_to "Destroy", article_path(article), data: {
               turbo_method: :delete,
               turbo_confirm: "Are you sure?"
             } %></li>

@@ -1,8 +1,10 @@
-
+<section id="contact" class="contact">
+  <div class="container aos-init aos-animate">
+    <div class="col-lg-6">
 <%= form_with model:  @article , scope: article , url: article_path(@article) do |form| %>
-
-
-  <div>
+        <div class="project-form">
+          <div id="title-project-form">Article Information</div>
+          <div class="form-group">
     <%= form.label :title %><br>
     <%= form.text_field :title %>
     <% @article.errors.full_messages_for(:title).each do |message| %>
@@ -10,24 +12,24 @@
     <% end %>
   </div>
 
-  <div>
+          <div class="form-group">
     <%= form.label :abstract %><br>
     <%= form.text_area :abstract %><br>
     <% @article.errors.full_messages_for(:abstract).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
-  <div>
-    <%= form.label "Authors" %><br>
+          <div class="project-form">
+    <%= form.label "Projects" %><br>
     <%= form.collection_check_boxes :project_ids, Project.all, :id, :title %>
-  </div>
+            <div class="form-group">
 
-  <div>
+          <div class="project-form">
     <%= form.label "Authors" %><br>
-    <%= form.collection_check_boxes :researcher_ids, Researcher.all, :id, :name %>
+    <%= form.collection_check_boxes :researcher_ids, Researcher.all, :id, :name, class:  "col-sm-4" %>
   </div>
 
-  <div>
+          <div class="form-group">
     <%= form.label :publish_date %><br>
     <%= form.date_field :publish_date %><br>
     <% @article.errors.full_messages_for(:publish_date).each do |message| %>
@@ -35,7 +37,7 @@
     <% end %>
   </div>
 
-  <div>
+          <div class="form-group">
     <%= form.label :pages %><br>
     <%= form.number_field :pages %><br>
     <% @article.errors.full_messages_for(:pages).each do |message| %>
@@ -43,7 +45,7 @@
     <% end %>
   </div>
 
-  <div>
+              <div class="form-group">
     <%= form.label :keywords %><br>
     <%= form.text_area :keywords %><br>
     <% @article.errors.full_messages_for(:keywords).each do |message| %>
@@ -51,7 +53,7 @@
     <% end %>
   </div>
 
-  <div>
+              <div class="form-group">
     <%= form.label :url %><br>
     <%= form.text_field :url %><br>
     <% @article.errors.full_messages_for(:url).each do |message| %>
@@ -59,7 +61,7 @@
     <% end %>
   </div>
 
-  <div>
+              <div class="form-group">
     <%= form.label :ids %><br>
     <%= form.text_field :ids %><br>
     <% @article.errors.full_messages_for(:ids).each do |message| %>
@@ -68,7 +70,7 @@
   </div>
 
 
-
+          <div id="title-project-form">Information</div>
   <%case @article.type %>
 <%when 'Book'%>
     <div>
@@ -79,7 +81,7 @@
 
   <% end %>
 </div>
-    <div>
+                <div class="form-group">
       <%= form.label :publisher %><br>
       <%= form.text_field :publisher %><br>
       <% @article.errors.full_messages_for(:publisher).each do |message| %>
@@ -89,7 +91,7 @@
     </div>
 
   <%when 'Thesis'%>
-    <div>
+                <div class="form-group">
       <%= form.label :university %><br>
       <%= form.text_field :university %><br>
       <% @article.errors.full_messages_for(:university).each do |message| %>
@@ -97,7 +99,7 @@
 
       <% end %>
     </div>
-    <div>
+                <div class="form-group">
       <%= form.label :thesis_type %><br>
       <%= form.text_field :thesis_type %><br>
       <% @article.errors.full_messages_for(:thesis_type).each do |message| %>
@@ -107,7 +109,7 @@
     </div>
 
   <%when 'Conference'%>
-    <div>
+                <div class="form-group">
       <%= form.label :proceedings %><br>
       <%= form.text_field :proceedings %><br>
       <% @article.errors.full_messages_for(:proceedings).each do |message| %>
@@ -115,7 +117,7 @@
 
       <% end %>
     </div>
-    <div>
+                <div class="form-group">
       <%= form.label :place %><br>
       <%= form.text_field :place %><br>
       <% @article.errors.full_messages_for(:place).each do |message| %>
@@ -124,7 +126,7 @@
       <% end %>
     </div>
   <%when 'Journal'%>
-    <div>
+                <div class="form-group">
       <%= form.label :journal_name %><br>
       <%= form.text_field :journal_name %><br>
       <% @article.errors.full_messages_for(:journal_name).each do |message| %>
@@ -134,8 +136,12 @@
     </div>
   <%else %>
   <% end %>
+        </div>
+        </div>
+        </div>
+        <div class="text-center">
+          <%= form.submit :class=>"btn btn-primary"%>
+        </div>
+      <% end %>
+        </section>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
