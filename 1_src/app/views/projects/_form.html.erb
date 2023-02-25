@@ -115,7 +115,6 @@
   <div id="title-project-form">Other Investigators</div>
   <div class="row">
     <div class="form-group col-md-8">
-      <%= select_tag :researcher_id, options_from_collection_for_select(Researcher.all, "id", "name"),  multiple: true%>
       <%= form.select :researcher_id, Researcher.pluck(:name, :id), {}, {multiple: true, data: {controller: 'slim'}} %>    
     </div>
     <div class="form-group col-md-1">
@@ -124,19 +123,6 @@
   </div>
 </div>
 
-<div class="project-form">
-  <div id="title-project-form">Partners , {multiple: true}</div>
-    <div class="row">
-      <div class="form-group col-md-8">
-        <%= form.label :researcher %>
-        <%#= form.select :researcher, Researcher.pluck(:name, :id), {allow_blank: true} , {data: {contoller: 'slim'}} %>
-      </div>
-      <div class="form-group col-md-1">
-        <%= form.label :researchers %>
-        <%#= form.select :researchers, Researcher.pluck(:name, :id), {}, {multiple: true} %>
-      </div>
-    </div>
-  </div>
 
   <div class="text-center">
     <%= form.submit %>

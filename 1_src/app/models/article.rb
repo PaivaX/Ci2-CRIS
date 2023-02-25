@@ -3,6 +3,6 @@ class Article < ApplicationRecord
     validates :abstract, length: {minimum: 15}
     has_and_belongs_to_many :projects
     has_and_belongs_to_many :researchers
-    acts_as_taggable_on  :keywords
+    #acts_as_taggable_on  :keywords
 end
 
