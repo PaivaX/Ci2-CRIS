@@ -41,7 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_235938) do
 
   create_table "articles", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
-    
     t.date "publish_date"
     t.integer "pages"
     t.text "abstract"
@@ -139,6 +138,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_235938) do
     t.index ["user_id"], name: "index_researchers_on_user_id"
   end
 
+  create_table "researchers_vacancies", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "researcher_id", null: false
+    t.bigint "vacancy_id", null: false
+    t.index ["researcher_id"], name: "index_researchers_vacancies_on_researcher_id"
+    t.index ["vacancy_id"], name: "index_researchers_vacancies_on_vacancy_id"
+  end
+
   create_table "taggings", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "tag_id"
     t.string "taggable_type"
@@ -168,13 +174,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_235938) do
     t.datetime "updated_at", null: false
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
-  end
-
-  create_table "researchers_vacancies", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "researcher_id", null: false
-    t.bigint "vacancy_id", null: false
-    t.index ["researcher_id"], name: "index_researchers_vacancies_on_researcher_id"
-    t.index ["vacancy_id"], name: "index_researchers_vacancies_on_vacancy_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|

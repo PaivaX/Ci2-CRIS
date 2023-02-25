@@ -35,6 +35,7 @@ institution = Institution.create(name: "IPT")
 institution = Institution.create(name: "IPL")
 institution = Institution.create(name: "IP da vida")
 
+vaga1 = Vacancy.create(reference:"Vaga", deadline: "2001-2-25")
 book1 = Article.create(
                        title: "Cozer batatas: scientific review",
                        abstract: "Uma análise científica sobre o contexto físico da cozedura de batatas",

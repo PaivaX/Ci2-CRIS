@@ -30,9 +30,9 @@
   <%= will_paginate @projects %>
   </div>
       <% if user_signed_in? && ['user','admin','superadmin'].include?(current_user.user_type) %>
-      <a class="fixedButton" href="projects/new">
-         <div class="roundedFixedBtn"><i class="bi bi-pencil-square"></i></div>
-      </a>
-    <% end %>
+
+    <% end %><a class="fixedButton" href="projects/new">
+  <div class="roundedFixedBtn"><i class="bi bi-pencil-square"></i></div>
+</a>
 </div>
 </section>
