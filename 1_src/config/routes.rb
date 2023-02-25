@@ -25,4 +25,6 @@ Rails.application.routes.draw do
 
   resources :articles
   get 'articles/searchByType/:type', to: 'articles#listSelect'
+
+  get '/tagged', to: "articles#tagged", as: :tagged
 end

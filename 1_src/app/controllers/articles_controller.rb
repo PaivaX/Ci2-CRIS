@@ -11,8 +11,14 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(getParamsCreate(params[:article][:type]))
 
+
+    if params[:project_ids]
       associateProjectsToArticle(params[:project_ids])
+    end
+    if params[:researcher_ids]
       associateResearchersToArticle(params[:researcher_ids])
+    end
+
     if @article.save
 
       redirect_to articles_url
@@ -59,6 +65,15 @@ class ArticlesController < ApplicationController
     else
       render :edit, status:  :unprocessable_entity
     end
+  end
+
+  def tagged
+    if params[:tag].present?
+      @articles = Article.tagged_with(params[:tag])
+    else
+      @articles = Article.all
+    end
+    render 'index'
   end
 
   def destroy
@@ -127,39 +142,39 @@ class ArticlesController < ApplicationController
   end
 
   def book_edit_params
-    params.require(:book).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :project_id, :edition, :publisher, :type)
+    params.require(:book).permit(:title, :abstract, :authors, :publish_date, :pages, :keyword_list, :url, :ids, :project_id, :edition, :publisher, :type)
   end
   def thesis_edit_params
-    params.require(:thesis).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :project_id, :edition, :publisher, :type)
+    params.require(:thesis).permit(:title, :abstract, :authors, :publish_date, :pages, :keyword_list, :url, :ids, :project_id, :edition, :publisher, :type)
   end
   def journal_edit_params
-    params.require(:journal).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :project_id, :edition, :publisher, :type)
+    params.require(:journal).permit(:title, :abstract, :authors, :publish_date, :pages, :keyword_list, :url, :ids, :project_id, :edition, :publisher, :type)
   end
   def conference_edit_params
-    params.require(:conference).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :project_id, :edition, :publisher, :type)
+    params.require(:conference).permit(:title, :abstract, :authors, :publish_date, :pages, :keyword_list, :url, :ids, :project_id, :edition, :publisher, :type)
   end
   def report_edit_params
-    params.require(:report).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :type)
+    params.require(:report).permit(:title, :abstract, :authors, :publish_date, :pages, :keyword_list, :url, :ids, :type)
   end
 
   def report_params
-    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :type)
+    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keyword_list, :url, :ids, :type)
   end
 
   def conference_params
-    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :proceedings, :place, :type)
+    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keyword_list, :url, :ids, :proceedings, :place, :type)
   end
 
   def book_params
-    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :edition, :publisher, :type)
+    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keyword_list, :url, :ids, :edition, :publisher, :type)
   end
 
   def journal_params
-    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids, :journal_name, :type)
+    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keyword_list, :url, :ids, :journal_name, :type)
   end
 
   def thesis_params
-    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keywords, :url, :ids,  :university, :thesis_type, :type)
+    params.require(:article).permit(:title, :abstract, :authors, :publish_date, :pages, :keyword_list, :url, :ids,  :university, :thesis_type, :type)
   end
 
 end

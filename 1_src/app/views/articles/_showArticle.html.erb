@@ -24,8 +24,12 @@
             <% if article.ids %>
             <li class="d-flex align-items-center"><i class="bi bi-link"></i> <a href=""><%= article.ids %></a></li>
             <% end %>
-            <% if article.keywords %>
-            <li class="d-flex align-items-center"><i class="bi bi-file-earmark-word"></i> <%= article.keywords %></li>
+            <% if article.keyword_list %>
+              <% if  article.keyword_list.length !=0%>
+                <% article.keyword_list.each do |tag| %>
+              <li class="d-flex align-items-center"><i class="bi bi-bookmark"></i> <%=link_to tag,tagged_path(tag: tag)%></li>
+                <% end %>
+              <% end %>
             <% end %>
             <%case article.type %>
             <%when 'Book'%>

@@ -46,9 +46,9 @@
   </div>
 
               <div class="form-group">
-    <%= form.label :keywords %><br>
-    <%= form.text_area :keywords %><br>
-    <% @article.errors.full_messages_for(:keywords).each do |message| %>
+    <%= form.label :keyword_list %><br>
+    <%= form.text_area :keyword_list %><br>
+    <% @article.errors.full_messages_for(:keyword_list).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
