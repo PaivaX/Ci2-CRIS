@@ -217,6 +217,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_235938) do
   add_foreign_key "researchers", "users"
   add_foreign_key "researchers_vacancies", "researchers"
   add_foreign_key "researchers_vacancies", "vacancies"
-  add_foreign_key "vacancies", "projects"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "vacancies", "projects"
 end
