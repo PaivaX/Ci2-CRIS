@@ -1,5 +1,8 @@
 class CreateProjects < ActiveRecord::Migration[7.0]
   def change
+    add_reference :projects, :institution, foreign_key: true
+  end
+  def change
     create_table :projects do |t|
       t.references :researcher, foreign_key: true
       t.string :title

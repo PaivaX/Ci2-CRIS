@@ -1,0 +1,15 @@
+
+<h1>Vacancies</h1>
+
+<div id="vacancies">
+  <% @vacancies.each do |vacancy| %>
+    <%= render vacancy %>
+    <p>
+      <%= link_to "Show this vacancy", vacancy %>
+    </p>
+  <% end %>
+</div>
+
+<% if user_signed_in? && ['user','admin','superadmin'].include?(current_user.user_type) %>
+  <%= link_to "New vacancy", new_vacancy_path %>
+<% end %>

@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   get '/contacts', to: 'contacts#new', as: 'contact'
   get 'contacts/sent'
 
-  # Defines the root path route ("/")
+  resources :vacancies
+
+  resources :vacancies
+
+ 
   namespace :admin do
     get '/', to: 'admin#index'
     resources :users

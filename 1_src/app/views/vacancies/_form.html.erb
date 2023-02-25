@@ -1,0 +1,58 @@
+<%= form_with(model: vacancy) do |form| %>
+  <% if vacancy.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(vacancy.errors.count, "error") %> prohibited this vacancy from being saved:</h2>
+
+      <ul>
+        <% vacancy.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :reference, style: "display: block" %>
+    <%= form.text_field :reference %>
+  </div>
+
+  <div>
+    <%= form.label :position, style: "display: block" %>
+    <%= form.text_field :position %>
+  </div>
+
+  <div>
+    <%= form.label :requirement, style: "display: block" %>
+    <%= form.text_area :requirement %>
+  </div>
+
+  <div>
+    <%= form.label :deadline, style: "display: block" %>
+    <%= form.date_field :deadline %>
+    
+  </div>
+
+  <div>
+    <%= form.label :link, style: "display: block" %>
+    <%= form.text_field :link %>
+  </div>
+
+  <div>
+    <%= form.label :euraxess, style: "display: block" %>
+    <%= form.text_field :euraxess %>
+  </div>
+
+  <div>
+    <p>Project</p>
+  <%= form.select :project_id, Project.all.collect { |p| [ p.title, p.id]}, include_blank: true %>
+  </div>
+
+  <div>
+    <p>Supervisor</p>
+    <%= select_tag :researcher_ids, options_from_collection_for_select(Researcher.all, :id, :name),  multiple: true%>
+    </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

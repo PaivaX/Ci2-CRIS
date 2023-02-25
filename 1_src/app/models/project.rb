@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+    belongs_to :institution
+    has_many :vacancy 
     has_one :user
     has_and_belongs_to_many :researchers 
     validates :title, presence: true

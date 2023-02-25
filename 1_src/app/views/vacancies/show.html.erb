@@ -1,0 +1,14 @@
+
+
+<%= render @vacancy %>
+
+<div>
+  
+  <% if user_signed_in? && ['user','admin','superadmin'].include?(current_user.user_type) %>
+    <%= link_to "Edit this vacancy", edit_vacancy_path(@vacancy) %>
+    <%= button_to "Destroy this vacancy", @vacancy, method: :delete %>
+  <% end %>
+
+  <%= link_to "Back to vacancies", vacancies_path %>
+  
+</div>

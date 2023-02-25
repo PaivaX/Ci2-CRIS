@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_235938) do
 
   create_table "articles", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
+    
     t.date "publish_date"
     t.integer "pages"
     t.text "abstract"
@@ -169,6 +170,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_235938) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "researchers_vacancies", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "researcher_id", null: false
+    t.bigint "vacancy_id", null: false
+    t.index ["researcher_id"], name: "index_researchers_vacancies_on_researcher_id"
+    t.index ["vacancy_id"], name: "index_researchers_vacancies_on_vacancy_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "user_type", default: "user", null: false
@@ -184,6 +192,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_235938) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vacancies", charset: "utf8mb4", force: :cascade do |t|
+    t.string "reference"
+    t.string "position"
+    t.text "requirement"
+    t.date "deadline"
+    t.string "link"
+    t.string "euraxess"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_vacancies_on_project_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles_projects", "articles"
@@ -194,5 +215,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_235938) do
   add_foreign_key "institutions_researchers", "researchers"
   add_foreign_key "projects", "researchers"
   add_foreign_key "researchers", "users"
+  add_foreign_key "researchers_vacancies", "researchers"
+  add_foreign_key "researchers_vacancies", "vacancies"
+  add_foreign_key "vacancies", "projects"
   add_foreign_key "taggings", "tags"
 end

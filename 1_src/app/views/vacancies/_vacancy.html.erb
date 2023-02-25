@@ -1,0 +1,44 @@
+<div id="<%= dom_id vacancy %>">
+  <p>
+    <strong>Reference:</strong>
+    <%= vacancy.reference %>
+  </p>
+
+  <p>
+    <strong>Position:</strong>
+    <%= vacancy.position %>
+  </p>
+
+  <p>
+    <strong>Requirement:</strong>
+    <%= vacancy.requirement %>
+  </p>
+
+  <p>
+    <strong>Deadline:</strong>
+    <%= vacancy.deadline %>
+  </p>
+
+  <p>
+    <strong>Link:</strong>
+    <%= vacancy.link %>
+  </p>
+
+  <p>
+    <strong>Euraxess:</strong>
+    <%= vacancy.euraxess %>
+  </p>
+
+  <p>
+    <strong>Supervisor:</strong>
+    <% vacancy.researchers.each do |researcher|%>
+      <%= link_to researcher.name, researcher %>
+      <%end%></p>
+  </p>
+    
+  <p>
+    <strong>Project:</strong>
+    <%= vacancy.project %>
+  </p>
+
+</div>

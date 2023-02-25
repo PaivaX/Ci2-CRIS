@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reference: MyString
+  position: MyString
+  requirement: MyText
+  deadline: 2023-01-30
+  link: MyString
+  euraxess: MyString
+  project: one
+
+two:
+  reference: MyString
+  position: MyString
+  requirement: MyText
+  deadline: 2023-01-30
+  link: MyString
+  euraxess: MyString
+  project: two
