@@ -1,18 +1,14 @@
 <div class="section-header">
-  <h2>Projects</h2>
+  <h2><%= t("projects") %></h2>
 </div>
-<div class="row">
-<% if user_signed_in? && ['user','admin','superadmin'].include?(current_user.user_type) %>
-  <%= link_to "New Project", new_project_path, :class=>"btn btn-primary" %>
-<% end %>
-</div>
+
 <section id="projects" class="services sections-bg">
   <div class="container" data-aos="fade-up">
     <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
          <% @projects.each do |project| %>
             <div class="col-lg-4 col-md-6">
                <div class="service-item  position-relative"> 
-                <h5><%= link_to project.title, project %></h5>  
+                <h6><%= link_to project.title, project %></h6>  
                   <div class="post-img">
                     <% if project.avatar.attached? %>
                       <%= image_tag project.avatar, width: '100%', height: '150px' %>
@@ -20,17 +16,23 @@
                       <%= image_tag("banner.png", width: '100%', height: '150px') %>
                     <% end %>
                   </div>
-               <p class="post-category"><%= project.project_role %></p>
-                  
-                  <p><%= project.description.first(180) %></p>
+               <p class="post-category"><%= project.description.first(220) %></p>
+
                
                 <div class="post-meta">
-                  <p class="post-author-list">Rui Paiva | <time><%= project.start_date %></time></p>
+                  <p class="post-author-list"><%= project.researcher %> | <time><%= project.start_date %></time></p>
                 </div> 
                
                </div>
             </div>  
          <% end %> 
     </div>
+  <%#= will_paginate @projects %>
   </div>
+      <% if user_signed_in? && ['user','admin','superadmin'].include?(current_user.user_type) %>
+      <a class="fixedButton" href="projects/new">
+         <div class="roundedFixedBtn"><i class="bi bi-pencil-square"></i></div>
+      </a>
+    <% end %>
+</div>
 </section>

@@ -1,5 +1,5 @@
 <div class="section-header">
-  <h1><%= @projects.title %></h1>
+  <h3><%= @projects.title %></h3>
 </div>
 
 <div class="blog">
@@ -26,22 +26,27 @@
       <p><%= @projects.description %></p>
       <p></p>
       <p></p>
-      <p><h5><%= t('articles') %>:</h5></p>
-      <div class="list-group">
-      <%= render "articles/listArticles", article: @projects.articles %>
-      </div>
+      <% if @projects.articles.present? %>
+        <p><h5><%= t('articles') %>:</h5></p>
+        <div class="list-group">
+          <%= render "articles/listArticles", article: @projects.articles %>
+        </div>
+      <% end %>
     </div>
         <div class="meta-bottom">
           <i class="bi bi-calendar"></i>
                 <ul class="cats">
                   <li><%= t('project_status') %>: <%= @projects.project_role %></li> 
+                  <li><%= t('project_status') %>: <%= @projects.project_role %></li> 
                 </ul>
           <i class="bi bi-calendar"></i>
                 <ul class="cats">
                   <li><%= t('start_date') %>: <%= @projects.start_date %></li> 
+                  <li><%= t('start_date') %>: <%= @projects.start_date %></li> 
                 </ul>
           <i class="bi bi-calendar-x"></i>
                 <ul class="cats">
+                  <li><%= t('end_date') %>: <%= @projects.end_date %></li>
                   <li><%= t('end_date') %>: <%= @projects.end_date %></li>
                 </ul>
         <% #Opção de editar e apagar só aparece se estiver com o login efetuado %>

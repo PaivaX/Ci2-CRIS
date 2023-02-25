@@ -18,7 +18,11 @@ class ProjectsController < ApplicationController
   
     def create
       @projects = Project.new(projects_params)
-  
+      @currentUser = current_user.id
+      @user = User.find(current_user.id)
+      
+      @projects.researcher = @user.name
+
       if @projects.save
         redirect_to @projects
       else

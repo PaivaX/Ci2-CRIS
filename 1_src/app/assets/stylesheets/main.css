@@ -72,14 +72,41 @@ section {
   text-align: center;
   padding-bottom: 20px;
   padding-top: 13px;
+  margin-top: 120px;
+}
+.section-header-home {
+  text-align: center;
+  padding-bottom: 20px;
+  padding-top: 13px;
+ /* margin-top: 120px;*/
 }
 
 .section-header h2 {
   font-size: 32px;
   font-weight: 600;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px;*/
   padding-bottom: 20px;
   position: relative;
+}
+.card { margin-top: 120px;}
+
+.fixedButton{
+  position: fixed;
+  bottom: 0px;
+  right: 0px; 
+  padding: 20px;
+}
+.roundedFixedBtn{
+height: 60px;
+line-height: 60px;  
+width: 60px;  
+font-size: 2em;
+font-weight: bold;
+border-radius: 50%;
+background-color: #4CAF50;
+color: white;
+text-align: center;
+cursor: pointer;
 }
 
 .section-header h2:after {
@@ -312,6 +339,10 @@ Customize CI2
   transition: all 0.5s;
   color: #fff;
   padding: 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 997;
 }
 
 .topbar .contact-info i {
@@ -359,6 +390,9 @@ Customize CI2
   z-index: 997;
   height: 90px;
   background-color: var(--color-primary);
+  position: fixed;
+  width: 100%;
+  top: 40px;
 }
 
 .header.sticked {
@@ -371,7 +405,7 @@ Customize CI2
 }
 
 .header .logo img {
-  max-height: 60px;
+  max-height: 75px;
   margin-right: 6px;
 }
 
@@ -1081,12 +1115,9 @@ section {
   height: 100px;
 }
 
-
 .services .service-item .post-author-list {
   height: 15px;
 }
-
-
 
 .services .service-item .readmore {
   margin-top: 15px;
@@ -1991,11 +2022,13 @@ section {
   position: relative;
   background: var(--color-primary);
   padding: 60px 0 0 0;
+  /*margin-top: 50px;*/
 }
 
 @media (min-width: 1365px) {
   .hero {
     background-attachment: fixed;
+    margin-top: 50px;
   }
 }
 
